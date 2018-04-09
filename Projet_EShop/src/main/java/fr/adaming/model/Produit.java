@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -41,6 +42,7 @@ public class Produit implements Serializable {
 	private Categorie categorie;
 	
 	//Avace la ligne de commande :
+	@OneToMany(mappedBy="produit")
 	private List<LigneCommande> listeLigneCom;
 	
 	//Avec l'administrateur :
