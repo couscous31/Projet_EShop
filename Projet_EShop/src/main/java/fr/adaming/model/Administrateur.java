@@ -28,12 +28,22 @@ public class Administrateur implements Serializable{
 	public Administrateur() {
 		super();
 	}
+	
+	
+	public Administrateur(String mail, String mdp) {
+		super();
+		this.mail = mail;
+		this.mdp = mdp;
+	}
+
+
 	public Administrateur(int id, String mail, String mdp) {
 		super();
 		this.id = id;
 		this.mail = mail;
 		this.mdp = mdp;
 	}
+	
 	
 	// Déclaration des getters et des setters 
 	public int getId() {

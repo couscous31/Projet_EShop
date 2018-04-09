@@ -4,6 +4,6 @@ import fr.adaming.model.Administrateur;
 
 public interface IAdminDao {
 	
-	public Administrateur isExist();
+	public Administrateur isExist(Administrateur a);
 
 }
