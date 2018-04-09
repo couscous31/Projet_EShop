@@ -18,6 +18,7 @@
 	</context-param>
 
 
+
 	<!-- Etape 2. Déclaration et mapping de l'unique Servlet de JSF -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
