@@ -1,6 +1,7 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -22,8 +23,8 @@ public class AdminManagedBean implements Serializable{
 	//Transformation de l'association UML en Java
 	@ManagedProperty(value="#{adminService}")
 	private IAdminService adminService;
-//	@ManagedProperty(value="#{catService}")
-//	private ICategorieService catService;
+	@ManagedProperty(value="#{catService}")
+	private ICategorieService catService;
 	
 
 	// Setter pour l'injection de dépendance : obligatoire avec l'annotation @ManagedProperty
@@ -31,9 +32,9 @@ public class AdminManagedBean implements Serializable{
 		this.adminService = adminService;
 	}
 	
-//	public void setCatService(ICategorieService catService) {
-//		this.catService = catService;
-//	}
+	public void setCatService(ICategorieService catService) {
+		this.catService = catService;
+	}
 
 	// Déclaration des attributs transférés à la page
 	private Administrateur admin;
@@ -74,15 +75,16 @@ public class AdminManagedBean implements Serializable{
 	// Méthode se connecter
 	public String seConnecter(){
 		Administrateur aOut=adminService.isExist(this.admin);
-		
+
 		if (aOut!=null){
+
 			//Récupérer la liste des catégories
-//			listeCategories=catService.getAllCategorie(this.admin);
+			listeCategories=catService.getAllCategorie(aOut);
 			//Ajouter le formateur dans la session 
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("adminSession", aOut);
 			//Ajouter la liste des catégories dans la session 
-//			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("catListe", listeCategories);
-			return "accueil";
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("catListe", listeCategories);
+			return "accueilAdmin";
 			
 		} else {
 			//Message d'erreur

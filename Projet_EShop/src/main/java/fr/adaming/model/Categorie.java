@@ -26,6 +26,7 @@ public class Categorie implements Serializable{
 	private String nom;
 	private byte[] photo;
 	private String description;
+	private String image;
 	
 	//Transformation de l'association UML en Java 
 	@OneToMany(mappedBy="categorie", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
@@ -38,7 +39,7 @@ public class Categorie implements Serializable{
 	}
 	
 	
-	public Categorie(String nom, byte[] photo, String description, List<Produit> listeProduits) {
+	public Categorie(String nom, byte[] photo, String description, List<Produit> listeProduits, String image) {
 		super();
 		this.nom = nom;
 		this.photo = photo;
@@ -47,7 +48,7 @@ public class Categorie implements Serializable{
 	}
 
 
-	public Categorie(int id, String nom, byte[] photo, String description) {
+	public Categorie(int id, String nom, byte[] photo, String description, String image) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -82,11 +83,21 @@ public class Categorie implements Serializable{
 		this.description = description;
 	}
 	
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
 	//Méthode toString
 	@Override
 	public String toString() {
 		return "Categorie [idCategorie=" + id + ", nomCategorie=" + nom + ", photo="
-				+ Arrays.toString(photo) + ", description=" + description + "]";
+				+ Arrays.toString(photo) + ", description=" + description + "]" + image;
 	}
 	
 	

@@ -64,11 +64,11 @@ public class CategorieManagedBean implements Serializable{
 	}
 	
 	
-	// Appel de la méthode getAllCategorie de Service
-	public String getAllCategorie(){
-		// 
-		return null;
-	}
+//	// Appel de la méthode getAllCategorie de Service
+//	public String getAllCategorie(){
+//		// 
+//		return null;
+//	}
 
 
 	
