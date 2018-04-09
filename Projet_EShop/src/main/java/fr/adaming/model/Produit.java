@@ -43,6 +43,162 @@ public class Produit implements Serializable {
 	//Avace la ligne de commande :
 	private List<LigneCommande> listeLigneCom;
 	
+	//Avec l'administrateur :
+	@ManyToOne
+	@JoinColumn(name="a_id", referencedColumnName="id_admin")
+	private Administrateur administrateur;
+
+	
+	//constructeurs :
+	public Produit() {
+		super();
+	}
+
+
+	public Produit(String designation, String description, double prix, int quantite, boolean selectionne,
+			byte[] photoProd) {
+		super();
+		this.designation = designation;
+		this.description = description;
+		this.prix = prix;
+		this.quantite = quantite;
+		this.selectionne = selectionne;
+		this.photoProd = photoProd;
+	}
+
+
+	public Produit(long id, String designation, String description, double prix, int quantite, boolean selectionne,
+			byte[] photoProd) {
+		super();
+		this.id = id;
+		this.designation = designation;
+		this.description = description;
+		this.prix = prix;
+		this.quantite = quantite;
+		this.selectionne = selectionne;
+		this.photoProd = photoProd;
+	}
+
+
+	
+	//getters et setters 
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+	public String getDesignation() {
+		return designation;
+	}
+
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public double getPrix() {
+		return prix;
+	}
+
+
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
+
+	public int getQuantite() {
+		return quantite;
+	}
+
+
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
+
+
+	public boolean isSelectionne() {
+		return selectionne;
+	}
+
+
+	public void setSelectionne(boolean selectionne) {
+		this.selectionne = selectionne;
+	}
+
+
+	public byte[] getPhotoProd() {
+		return photoProd;
+	}
+
+
+	public void setPhotoProd(byte[] photoProd) {
+		this.photoProd = photoProd;
+	}
+
+
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+
+	public List<LigneCommande> getListeLigneCom() {
+		return listeLigneCom;
+	}
+
+
+	public void setListeLigneCom(List<LigneCommande> listeLigneCom) {
+		this.listeLigneCom = listeLigneCom;
+	}
+
+
+	public Administrateur getAdministrateur() {
+		return administrateur;
+	}
+
+
+	public void setAdministrateur(Administrateur administrateur) {
+		this.administrateur = administrateur;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
