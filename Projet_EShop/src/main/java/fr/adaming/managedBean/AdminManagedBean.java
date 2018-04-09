@@ -86,6 +86,7 @@ public class AdminManagedBean implements Serializable{
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("catListe", listeCategories);
 			return "accueilAdmin";
 			
+			
 		} else {
 			//Message d'erreur
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Echec de l'authentification"));
