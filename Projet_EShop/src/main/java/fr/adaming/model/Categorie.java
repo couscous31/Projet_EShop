@@ -2,8 +2,16 @@ package fr.adaming.model;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -11,40 +19,44 @@ import javax.persistence.Table;
 public class Categorie implements Serializable{
 	
 	// Déclaration des attributs
-	private int idCategorie;
-	private String nomCategorie;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_cat")
+	private int id;
+	private String nom;
 	private byte[] photo;
 	private String description;
 	
 	//Transformation de l'association UML en Java 
-	private Produit produit;
-	
+	@OneToMany(mappedBy="categorie", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
+	private List<Produit> listeProduits;
+
 	
 	//Déclaration des constructeurs 
 	public Categorie() {
 		super();
 	}
-	public Categorie(int idCategorie, String nomCategorie, byte[] photo, String description) {
+	public Categorie(int id, String nom, byte[] photo, String description) {
 		super();
-		this.idCategorie = idCategorie;
-		this.nomCategorie = nomCategorie;
+		this.id = id;
+		this.nom = nom;
 		this.photo = photo;
 		this.description = description;
 	}
 	
 	//Déclaration des getters et des setters 
 	
-	public int getIdCategorie() {
-		return idCategorie;
+	public int getId() {
+		return id;
 	}
-	public void setIdCategorie(int idCategorie) {
-		this.idCategorie = idCategorie;
+	public void setIdCategorie(int id) {
+		this.id = id;
 	}
-	public String getNomCategorie() {
-		return nomCategorie;
+	public String getNom() {
+		return nom;
 	}
-	public void setNomCategorie(String nomCategorie) {
-		this.nomCategorie = nomCategorie;
+	public void setNomCategorie(String nom) {
+		this.nom = nom;
 	}
 	public byte[] getPhoto() {
 		return photo;
@@ -62,7 +74,7 @@ public class Categorie implements Serializable{
 	//Méthode toString
 	@Override
 	public String toString() {
-		return "Categorie [idCategorie=" + idCategorie + ", nomCategorie=" + nomCategorie + ", photo="
+		return "Categorie [idCategorie=" + id + ", nomCategorie=" + nom + ", photo="
 				+ Arrays.toString(photo) + ", description=" + description + "]";
 	}
 	

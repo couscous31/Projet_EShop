@@ -1,5 +1,5 @@
 package fr.adaming.dao;
 
-public class AdminDaoImpl {
+public class AdminDaoImpl implements IAdminDao{
 
 }
