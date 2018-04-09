@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 
 @Entity
 @Table(name = "commandes")
@@ -30,7 +32,7 @@ public class Commande implements Serializable {
 	private Date date;
 
 	// Transfo assos avec ligne de commande
-	@OneToMany(mappedBy = "commande")
+	@OneToMany(mappedBy = "commande", cascade=CascadeType.REMOVE)
 	private List<LigneCommande> listeCl;
 
 	// Transfo assos avec client
