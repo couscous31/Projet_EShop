@@ -14,7 +14,7 @@
 <h:form id="form">
     <h:panelGrid columns="2" cellpadding="5">
         <p:outputLabel for="orientation" value="Orientation:" />
-        <p:selectOneButton id="orientation" value="#{megaMenuView.orientation}" onchange="$('#form').submit()">
+        <p:selectOneButton id="orientation" value="#{aMB.orientation}" onchange="$('#form').submit()">
             <f:selectItem itemLabel="Horizontal" itemValue="horizontal" />
             <f:selectItem itemLabel="Vertical" itemValue="vertical" />
         </p:selectOneButton>
