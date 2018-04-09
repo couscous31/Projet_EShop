@@ -80,6 +80,7 @@ public class AdminManagedBean implements Serializable{
 
 			//Récupérer la liste des catégories
 			listeCategories=catService.getAllCategorie(aOut);
+			System.out.println(listeCategories);
 			//Ajouter le formateur dans la session 
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("adminSession", aOut);
 			//Ajouter la liste des catégories dans la session 
