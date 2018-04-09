@@ -43,5 +43,8 @@ public class Produit implements Serializable {
 	//Avace la ligne de commande :
 	private List<LigneCommande> listeLigneCom;
 	
+	
+	
+	
 
 }
