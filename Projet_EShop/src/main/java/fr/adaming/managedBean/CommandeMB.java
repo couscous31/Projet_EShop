@@ -88,5 +88,19 @@ public class CommandeMB implements Serializable {
 		}
 		
 	}
+	
+	
+	public void supCom(){
+		//appel de la méthode
+		int verif = comService.deleteCom(commande);
+		
+		if(verif != 0){
+			//récup et affiche la new liste dans la session
+			listeCom = comService.getAllCom(client);
+			maSession.setAttribute("commandesListe", listeCom);
+		}else{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression a échoué !"));
+		}
+	}
 
 }
