@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
+import org.hibernate.Session;
 
 import fr.adaming.model.Administrateur;
 import fr.adaming.model.Categorie;
@@ -37,22 +41,23 @@ public class AdminManagedBean implements Serializable{
 	}
 
 	// Déclaration des attributs transférés à la page
-	private Administrateur admin;
+	private Administrateur administrateur;
 	private List<Categorie> listeCategories;
 	private List<Produit> listeProduits;
+	HttpSession maSession;
 	
 	//Déclaration du constructeur vide
 	public AdminManagedBean() {
-		this.admin=new Administrateur();
+		this.administrateur=new Administrateur();
 	}
 
 	// Déclaration des getters et des setters 
-	public Administrateur getAdmin() {
-		return admin;
+	public Administrateur getAdministrateur() {
+		return administrateur;
 	}
 
-	public void setAdmin(Administrateur admin) {
-		this.admin = admin;
+	public void setAdmin(Administrateur administrateur) {
+		this.administrateur = administrateur;
 	}
 
 	public List<Categorie> getListeCategories() {
@@ -71,20 +76,29 @@ public class AdminManagedBean implements Serializable{
 		this.listeProduits = listeProduits;
 	}
 	
+	@PostConstruct
+	public void init()
+	{
+	maSession=	 (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	this.administrateur=(Administrateur) maSession.getAttribute("adminSession");
+	}
 	
 	// Méthode se connecter
 	public String seConnecter(){
-		Administrateur aOut=adminService.isExist(this.admin);
+		Administrateur aOut=adminService.isExist(this.administrateur);
 
 		if (aOut!=null){
 
 			//Récupérer la liste des catégories
 			listeCategories=catService.getAllCategorie(aOut);
-			System.out.println(listeCategories);
+//			System.out.println(listeCategories);
 			//Ajouter le formateur dans la session 
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("adminSession", aOut);
 			//Ajouter la liste des catégories dans la session 
+		
+//			maSession.setAttribute("catListe",listeCategories);
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("catListe", listeCategories);
+			System.out.println("Je suis dans le Managed Bean =================================");
 			return "accueilAdmin";
 			
 			

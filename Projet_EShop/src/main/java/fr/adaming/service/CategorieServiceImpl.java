@@ -2,10 +2,15 @@ package fr.adaming.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import fr.adaming.dao.ICategorieDao;
 import fr.adaming.model.Administrateur;
 import fr.adaming.model.Categorie;
 
+@Service("catService")
+@Transactional
 public class CategorieServiceImpl implements ICategorieService{
 	
 	//Transformation de l'association UML en Java 

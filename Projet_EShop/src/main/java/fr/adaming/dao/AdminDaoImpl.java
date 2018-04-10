@@ -32,6 +32,7 @@ public class AdminDaoImpl implements IAdminDao{
 		query.setParameter("pMail", a.getMail());
 		query.setParameter("pMdp", a.getMdp());
 		// Récupération du résultat (et envoi)
+		System.out.println("Je suis dans DAO ====================");
 		return (Administrateur) query.uniqueResult();
 	}
 

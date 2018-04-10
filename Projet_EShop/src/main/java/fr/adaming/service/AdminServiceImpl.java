@@ -25,6 +25,7 @@ public class AdminServiceImpl implements IAdminService{
 	
 	@Override
 	public Administrateur isExist(Administrateur a) {
+		System.out.println("Je suis dans Service =====================");
 		return adminDao.isExist(a);
 	}
 

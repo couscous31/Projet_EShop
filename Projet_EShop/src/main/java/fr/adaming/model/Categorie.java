@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,7 +33,9 @@ public class Categorie implements Serializable{
 	//Transformation de l'association UML en Java 
 	@OneToMany(mappedBy="categorie", cascade=CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private List<Produit> listeProduits;
-
+	@ManyToOne
+	@JoinColumn(name="ad_id", referencedColumnName="id_admin")
+	private Administrateur admin;
 	
 	//Déclaration des constructeurs 
 	public Categorie() {
