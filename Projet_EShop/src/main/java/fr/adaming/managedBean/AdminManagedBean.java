@@ -56,7 +56,7 @@ public class AdminManagedBean implements Serializable{
 		return administrateur;
 	}
 
-	public void setAdmin(Administrateur administrateur) {
+	public void setAdministrateur(Administrateur administrateur) {
 		this.administrateur = administrateur;
 	}
 
@@ -76,13 +76,13 @@ public class AdminManagedBean implements Serializable{
 		this.listeProduits = listeProduits;
 	}
 	
-	@PostConstruct
-	public void init()
-	{
-	maSession=	 (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-	this.administrateur=(Administrateur) maSession.getAttribute("adminSession");
-	}
-	
+//	@PostConstruct
+//	public void init()
+//	{
+//	maSession=	 (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+//	this.administrateur=(Administrateur) maSession.getAttribute("adminSession");
+//	}
+//	
 	// Méthode se connecter
 	public String seConnecter(){
 		Administrateur aOut=adminService.isExist(this.administrateur);

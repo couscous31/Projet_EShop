@@ -2,6 +2,7 @@ package fr.adaming.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,13 +15,19 @@ import fr.adaming.model.Categorie;
 public class CategorieServiceImpl implements ICategorieService{
 	
 	//Transformation de l'association UML en Java 
+	@Autowired
 	private ICategorieDao catDao;
+	// Setter pour l'injection de dépendance 
+	public void setCatDao(ICategorieDao catDao) {
+		this.catDao = catDao;
+	}
+	//==================================================================
+	//==================================================================
+	//==================================================================
+	
 
-	//==================================================================
-	//==================================================================
-	//==================================================================
-	
-	
+
+
 	@Override
 	public List<Categorie> getAllCategorie(Administrateur a) {
 		return catDao.getAllCategorie(a);

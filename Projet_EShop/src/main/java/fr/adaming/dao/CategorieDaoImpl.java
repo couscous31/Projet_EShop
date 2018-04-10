@@ -27,7 +27,7 @@ public class CategorieDaoImpl implements ICategorieDao{
 	@Override
 	public List<Categorie> getAllCategorie(Administrateur a) {
 		// Création de la requête 
-		String req="FROM Categorie as cat WHERE cat.a.id=:pIdAdm";
+		String req="FROM Categorie as cat WHERE cat.admin.id=:pIdAdm";
 		// Session
 		Session s=sf.getCurrentSession();
 		//Création du Query
