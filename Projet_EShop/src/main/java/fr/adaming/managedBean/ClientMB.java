@@ -13,7 +13,10 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import fr.adaming.model.Client;
+import fr.adaming.model.LigneCommande;
 import fr.adaming.service.IClientService;
+import fr.adaming.service.ICommandeService;
+import fr.adaming.service.IProduitService;
 
 @ManagedBean(name = "clMB")
 @RequestScoped
@@ -28,6 +31,22 @@ public class ClientMB implements Serializable {
 		this.clService = clService;
 	}
 
+	// Transfo assos avec ICommandeService
+	@ManagedProperty(value = "#{commandeService}")
+	private ICommandeService comService;
+
+	public void setComService(ICommandeService comService) {
+		this.comService = comService;
+	}
+
+	// Transfo assos avec IProduitService
+	@ManagedProperty(value = "#{prService}")
+	private IProduitService prodService;
+
+	public void setProdService(IProduitService prodService) {
+		this.prodService = prodService;
+	}
+
 	// Attributs du MB
 	private Client client;
 	private List<Client> listeClients;
@@ -37,10 +56,10 @@ public class ClientMB implements Serializable {
 	public ClientMB() {
 		this.client = new Client();
 	}
-	
-	//Méthode init
+
+	// Méthode init
 	@PostConstruct
-	public void init(){
+	public void init() {
 		maSession = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 	}
 
@@ -85,9 +104,30 @@ public class ClientMB implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression a échoué !"));
 		}
 	}
-	
-	public void seConnecter(){
+
+	public void seConnecter() {
+		//appel de la méthode
+		Client clOut = clService.isExist(client);
 		
+		if(clOut != null){
+			
+			//récup la liste de ligne de commande dans la session
+			List<LigneCommande> listeLc = 
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		}
+		
+
 	}
 
 }
