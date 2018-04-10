@@ -21,6 +21,8 @@
     </h:panelGrid>
 </h:form>
 
+
+<h:form>
 <p:megaMenu orientation="#{aMB.orientation}" style="margin-top:20px">
     <p:submenu label="Gestion des produits" icon="ui-icon-check">
         <p:column>
@@ -39,37 +41,36 @@
  
         <p:column>
          <p:submenu>
-                <p:menuitem value="Formualire de recherche" url="rechercherProduit.xhtml" />           
+                <p:menuitem value="Formulaire de recherche" url="rechercherProduit.xhtml" />           
                 
                 </p:submenu>
         </p:column>
     </p:submenu>
  
-    <p:submenu label="Gestion des categories" icon="ui-icon-document">
+    <p:submenu label="Gestion des categories" icon="ui-icon-check">
  
         <p:column>
-            <p:submenu label="Ajouter une catégorie à la liste">
-                </p:submenu>
+            <p:submenu label="Ajouter une catégorie">
                 <p:menuitem value="Formulaire d'ajout" url="#" />
             </p:submenu>
         </p:column>
  
         <p:column>
-            <p:submenu label="Sports.4">
+            <p:submenu label="Consulter la liste des categories">
                  <p:menuitem value="Liste des catégories" url="#" />
             </p:submenu>
         </p:column>
         <p:column>
-            <p:submenu label="Sports.7">
+            <p:submenu label="Rechercher une categorie dans la liste">
                <p:menuitem value="Formulaire de recherche" url="#" />
             </p:submenu>
         </p:column>
     </p:submenu>
  
  
-    <p:menuitem value="Quit" action="#{aMB.seDeconnecter}" url="accueilGenerale.xhtml" icon="ui-icon-close" />
+    <p:menuitem value="Quit" action="#{aMB.seDeconnecter}" url="accueil.xhtml" icon="ui-icon-close" />
 </p:megaMenu>
-
+</h:form>
 
 </ui:composition>
 

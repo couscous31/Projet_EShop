@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+
+	xmlns:h="http://java.sun.com/jsf/html"
+
+	xmlns:f="http://java.sun.com/jsf/core"
+
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+
+	<title>Rechercher avec mot cle</title>
+
+</h:head>
+
+
+
+<h:body>
+
+
+
+	<h:form>
+
+		<p:carousel value="#{sessionScope.rechListe}"
+
+			headerText="Produits" var="pr" itemStyle="text-align:center"
+
+			responsive="true">
+
+
+
+			<p:panelGrid columns="2" style="width:100%;margin:10px 0px"
+
+				columnClasses="label,value" layout="grid"
+
+				styleClass="ui-panelgrid-blank">
+
+
+
+				<f:facet name="header">
+
+					<h:graphicImage value="#{pr.image}" />
+
+				</f:facet>
+
+
+
+				<h:outputText value="Id:" />
+
+				<h:outputText value="#{pr.id}" />
+
+
+
+				<h:outputText value="Désignation:" />
+
+				<h:outputText value="#{pr.designation}" />
+
+
+
+				<h:outputText value="Description:" />
+
+				<h:outputText value="#{pr.description}" />
+
+
+
+				<h:outputText value="Prix:" />
+
+				<h:outputText value="#{pr.prix}" />
+
+
+
+               <h:outputText value="Catégorie:" />
+
+				<h:outputText value="#{pr.categorie.id}" />
+
+
+
+			</p:panelGrid>
+
+
+
+		</p:carousel>
+
+	</h:form>
+
+
+
+	
+
+</h:body>
+
+</html>

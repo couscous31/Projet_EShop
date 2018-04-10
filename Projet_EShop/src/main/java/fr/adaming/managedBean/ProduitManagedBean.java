@@ -43,6 +43,11 @@ public class ProduitManagedBean implements Serializable {
 	private boolean indice;
 	
 	HttpSession sessionProd;
+	
+	private String motCle;
+	
+	private List<Produit> filtreProduits;
+
 
 	
 	
@@ -56,6 +61,8 @@ public class ProduitManagedBean implements Serializable {
 	@PostConstruct
 	public void init()
 	{
+		//Pour afficher liste produit dans accueil général :
+		this.listeProduit=produitService.getAllProduit();
 		
 		//récupération de la session ouverte:
 		this.sessionProd=(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -97,9 +104,41 @@ public class ProduitManagedBean implements Serializable {
 		this.uf = uf;
 	}
 	
+	public String getMotCle() {
+		return motCle;
+	}
+
+	public void setMotCle(String motCle) {
+		this.motCle = motCle;
+	}
 	
-	//Méthodes métiers:
+	public List<Produit> getFiltreProduits() {
+		return filtreProduits;
+	}
+
+	public void setFiltreProduits(List<Produit> filtreProduits) {
+		this.filtreProduits = filtreProduits;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+	public boolean isIndice() {
+		return indice;
+	}
+
+	public void setIndice(boolean indice) {
+		this.indice = indice;
+	}
 	
+	
+	//Méthodes métiers:	
+
 	//ajouter un produit :
 	public String ajouterProduit()
 	{
@@ -113,7 +152,7 @@ public class ProduitManagedBean implements Serializable {
 			//remettre à jour la liste
 			List<Produit> liste=produitService.getAllProduit();
 			
-			sessionProd.setAttribute("prodListe", liste);
+			sessionProd.setAttribute("produitListe", liste);
 			
 			return "accueil";
 		}
@@ -126,7 +165,7 @@ public class ProduitManagedBean implements Serializable {
 
 	
 	//modifier les attributs d'un produit :
-	public void modifierProduit(RowEditEvent event)
+	public void editProduit(RowEditEvent event)
 	{
 		//appel de la methode :
 		produitService.updateProduit((Produit) event.getObject());
@@ -135,7 +174,7 @@ public class ProduitManagedBean implements Serializable {
 		List<Produit> liste = produitService.getAllProduit();
 		
 		//mettre à jour la liste :
-		sessionProd.setAttribute("prodListe", liste);
+		sessionProd.setAttribute("produitListe", liste);
 	}
 	
 	
@@ -148,7 +187,7 @@ public class ProduitManagedBean implements Serializable {
 		if(prSuppr!=0)
 		{
 			List<Produit> liste = produitService.getAllProduit();
-			sessionProd.setAttribute("prodListe", liste);
+			sessionProd.setAttribute("produitListe", liste);
 		}
 		else
 		{
@@ -197,7 +236,7 @@ public class ProduitManagedBean implements Serializable {
 			//List<Produit> liste=produitService.getAllProduit();
 			
 			//la mettre à jour :
-			sessionProd.setAttribute("prodListe", liste);
+			sessionProd.setAttribute("produitListe", liste);
 			
 			return "produitParCategorie";
 		}

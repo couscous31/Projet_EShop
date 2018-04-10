@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Liste produit</title>
+</h:head>
+
+<h:body>
+
+
+	<ui:composition template="/template/layoutAgent.xhtml">
+		<ui:define name="corps">
+
+			<h:form>
+
+				<p:dataTable var="pr" value="#{sessionScope.produitListe}"
+					editable="true" style="text-align: center">
+					<f:facet name="header">Liste des produits </f:facet>
+
+					<p:ajax event="rowEdit" listener="#{prMB.editProduit}" />
+					<p:ajax event="rowEditCancel" listener="#{prMB.editProduit}" />
+
+					<p:column headerText="Id">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{pr.id}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText id="modelInput" value="#{pr.id}" style="width:100%"
+									rendered="false" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Désignation">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{pr.designation}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{pr.designation}" style="width:100%"
+									label="Désignation" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Description">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{pr.description}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{pr.description}" style="width:100%"
+									label="Description" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Prix">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{pr.prix}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{pr.prix}" style="width:100%" label="Prix" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Quantité">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{pr.quantite}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{pr.quantite}" style="width:100%"
+									label="Quantité" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					
+					<p:column headerText="Catégorie">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:outputText value="#{pr.categorie.id}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{pr.categorie.id}" style="width:100%"
+									label="categorie" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Photo">
+						<p:cellEditor>
+							<f:facet name="output">
+								<h:graphicImage value="#{pr.image}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{pr.image}" style="width:100%"
+									label="Photo" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+
+					<p:column headerText="Opération">
+						<h:commandLink value="Supprimer" action="#{prMB.supprimerProduit}"
+							update="@all">
+							<f:setPropertyActionListener value="#{pr.id}"
+								target="#{prMB.produit.id}" />
+						</h:commandLink>
+					</p:column>
+
+					<p:column style="width:32px">
+						<p:rowEditor />
+					</p:column>
+				</p:dataTable>
+
+			</h:form>
+
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

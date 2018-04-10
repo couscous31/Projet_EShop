@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<title>Liste produit pour recherche </title>
+</h:head>
+
+
+<h:body>
+
+<h:form>
+				<p:dataTable id="tableStateDT" var="pr"
+					value="#{sessionScope.produitListe}" widgetVar="carsTable"
+					multiViewState="true" rows="10" paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="1,2,3,4,5,6,7,8,9,10" selectionMode="single"
+					selection="#{prMB.produit}" rowKey="#{pr.id}"
+					emptyMessage="No cars found with given criteria"
+					filteredValue="#{prMB.filtreProduits}">
+
+
+					<f:facet name="header">
+						<p:outputPanel>
+							<p:inputText label="mot clé" value="#{prMB.motCle}" />
+							<h:commandButton action="#{prMB.rechMotCle}"
+								value="Rechercher" />
+					</p:outputPanel>
+					</f:facet>
+
+					<p:ajax event="rowSelect" oncomplete="PF('prDialog').show()" />
+
+
+
+					<p:column headerText="Modèle" filterBy="#{pr.designation}"
+						sortBy="#{pr.designation}" filterMatchMode="startsWith">
+						<h:outputText value="#{pr.designation}" />
+					</p:column>
+
+
+
+					<p:column headerText="Description" filterBy="#{pr.description}"
+						sortBy="#{pr.description}" filterMatchMode="startsWith">
+						<h:outputText value="#{pr.description}" />
+					</p:column>
+
+
+
+					<p:column headerText="Prix" filterBy="#{pr.prix}"
+						sortBy="#{pr.prix}" filterMatchMode="startsWith">
+						<h:outputText value="#{pr.prix}" />
+					</p:column>
+					
+					<p:column headerText="Categorie" filterBy="#{pr.categorie.id}"
+						sortBy="#{pr.prix}" filterMatchMode="startsWith">
+						<h:outputText value="#{pr.categorie.id}" />
+					</p:column>
+
+
+
+					<p:column headerText="Photo" filterBy="#{pr.image}"
+						sortBy="#{pr.image}" filterMatchMode="startsWith">
+						<h:graphicImage value="#{pr.image}" />
+					</p:column>
+					
+					</p:dataTable>
+
+			</h:form>
+
+</h:body>
+</html>

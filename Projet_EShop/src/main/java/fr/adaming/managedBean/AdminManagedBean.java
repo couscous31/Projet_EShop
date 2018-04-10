@@ -19,6 +19,7 @@ import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 import fr.adaming.service.IAdminService;
 import fr.adaming.service.ICategorieService;
+import fr.adaming.service.IProduitService;
 
 @ManagedBean(name="aMB")
 @RequestScoped
@@ -29,6 +30,8 @@ public class AdminManagedBean implements Serializable{
 	private IAdminService adminService;
 	@ManagedProperty(value="#{catService}")
 	private ICategorieService catService;
+	@ManagedProperty(value="#{prService}")
+	private IProduitService produitService;
 	
 
 	// Setter pour l'injection de dépendance : obligatoire avec l'annotation @ManagedProperty
@@ -39,12 +42,25 @@ public class AdminManagedBean implements Serializable{
 	public void setCatService(ICategorieService catService) {
 		this.catService = catService;
 	}
+	
+	
+	
+
+	public void setProduitService(IProduitService produitService) {
+		this.produitService = produitService;
+	}
+
+
+
 
 	// Déclaration des attributs transférés à la page
 	private Administrateur administrateur;
 	private List<Categorie> listeCategories;
 	private List<Produit> listeProduits;
 	HttpSession maSession;
+	
+    private String orientation = "horizontal";
+
 	
 	//Déclaration du constructeur vide
 	public AdminManagedBean() {
@@ -76,7 +92,20 @@ public class AdminManagedBean implements Serializable{
 		this.listeProduits = listeProduits;
 	}
 	
-//	@PostConstruct
+	
+	
+	
+	
+public String getOrientation() {
+		return orientation;
+	}
+
+	public void setOrientation(String orientation) {
+		this.orientation = orientation;
+	}
+	
+
+	//	@PostConstruct
 //	public void init()
 //	{
 //	maSession=	 (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -91,6 +120,7 @@ public class AdminManagedBean implements Serializable{
 
 			//Récupérer la liste des catégories
 			listeCategories=catService.getAllCategorie(aOut);
+			listeProduits=produitService.getAllProduit();
 //			System.out.println(listeCategories);
 			//Ajouter le formateur dans la session 
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("adminSession", aOut);
@@ -98,6 +128,7 @@ public class AdminManagedBean implements Serializable{
 		
 //			maSession.setAttribute("catListe",listeCategories);
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("catListe", listeCategories);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe", listeProduits);
 			System.out.println("Je suis dans le Managed Bean =================================");
 			return "accueilAdmin";
 			
@@ -110,7 +141,14 @@ public class AdminManagedBean implements Serializable{
 	}
 
 	
-	
+	public String seDeconnecter()
+	{
+		
+		//fermer la session ouverte :
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		
+		return "login";
+	}
 	
 	
 	
