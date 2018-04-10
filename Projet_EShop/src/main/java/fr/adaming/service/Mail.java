@@ -39,7 +39,7 @@ public class Mail {
 			Message msg = new MimeMessage(session);
 
 			// Set from : adresse du destinataire
-			msg.setFrom(new InternetAddress("couscous31java@gmail.com"));
+			msg.setFrom(new InternetAddress(username));
 
 			// Set to : adresse du réceptionniste
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(mailRecup));
