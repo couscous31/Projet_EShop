@@ -43,8 +43,10 @@ public class CategorieDaoImpl implements ICategorieDao{
 
 	@Override
 	public Categorie addCategorie(Categorie cat) {
-		// TODO Auto-generated method stub
-		return null;
+		// Récupération de la session
+		Session s=sf.getCurrentSession();
+		s.save(cat);
+		return cat;
 	}
 	//===============================================================
 	//===============================================================

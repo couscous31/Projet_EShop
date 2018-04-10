@@ -3,9 +3,12 @@ package fr.adaming.managedBean;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import fr.adaming.model.Administrateur;
 import fr.adaming.model.Categorie;
@@ -28,10 +31,12 @@ public class CategorieManagedBean implements Serializable{
 	private Categorie categorie;
 	private Administrateur admin;
 	private List<Categorie> listeCategories;
+	HttpSession maSession;
 
 	//Déclaration du constructeur vide 
 	public CategorieManagedBean() {
 		this.categorie=new Categorie();
+		this.admin=new Administrateur();
 	}
 
 	//Déclaration des getters et des setters 
@@ -63,12 +68,18 @@ public class CategorieManagedBean implements Serializable{
 		this.listeCategories = listeCategories;
 	}
 	
+	@PostConstruct
+	public void init()
+	{
+	maSession=	 (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+	this.admin=(Administrateur) maSession.getAttribute("adminSession");
+	}
+
 	
-//	// Appel de la méthode getAllCategorie de Service
-//	public String getAllCategorie(){
-//		// 
-//		return null;
-//	}
+	// Méthode Ajouter une catégorie
+	public String addCategorie(){
+		
+	}
 
 
 	

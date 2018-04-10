@@ -40,8 +40,8 @@ public class CategorieServiceImpl implements ICategorieService{
 
 	@Override
 	public Categorie addCategorie(Categorie cat, Administrateur a) {
-		// TODO Auto-generated method stub
-		return null;
+		cat.setAdmin(a);
+		return catDao.addCategorie(cat);
 	}
 
 	//==================================================================

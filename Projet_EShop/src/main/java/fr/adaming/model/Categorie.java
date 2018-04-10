@@ -12,9 +12,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="categories")
@@ -26,8 +28,10 @@ public class Categorie implements Serializable{
 	@Column(name="id_cat")
 	private int id;
 	private String nom;
+	@Lob
 	private byte[] photo;
 	private String description;
+	@Transient
 	private String image;
 	
 	//Transformation de l'association UML en Java 
@@ -43,6 +47,8 @@ public class Categorie implements Serializable{
 	}
 	
 	
+
+
 	public Categorie(String nom, byte[] photo, String description, List<Produit> listeProduits, String image) {
 		super();
 		this.nom = nom;
@@ -94,6 +100,25 @@ public class Categorie implements Serializable{
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public List<Produit> getListeProduits() {
+		return listeProduits;
+	}
+
+
+	public void setListeProduits(List<Produit> listeProduits) {
+		this.listeProduits = listeProduits;
+	}
+
+
+	public Administrateur getAdmin() {
+		return admin;
+	}
+
+
+	public void setAdmin(Administrateur admin) {
+		this.admin = admin;
 	}
 
 
