@@ -1,6 +1,7 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -13,7 +14,9 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import fr.adaming.model.Client;
+import fr.adaming.model.Commande;
 import fr.adaming.model.LigneCommande;
+import fr.adaming.model.Produit;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.ICommandeService;
 import fr.adaming.service.IProduitService;
@@ -106,27 +109,35 @@ public class ClientMB implements Serializable {
 	}
 
 	public void seConnecter() {
-		//appel de la méthode
+		// appel de la méthode
 		Client clOut = clService.isExist(client);
-		
-		if(clOut != null){
-			
-			//récup la liste de ligne de commande dans la session
-			List<LigneCommande> listeLc = 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
+		if (clOut != null) {
+
+			// récup la liste de ligne de commande dans la session
+			List<LigneCommande> listeLc = (List<LigneCommande>) maSession.getAttribute("lcommandesListe");
+
+			// enregistrer de la commande
+			Commande comIn = new Commande();
+			comIn.setDate(new Date());
+			comIn.setListeCl(listeLc);
+
+			// ajouter la commande dans la BD et récup de son id
+			Commande comOut = comService.addCom(comIn, clOut);
+
+			// récup le montant total
+			double total = (double) maSession.getAttribute("total");
+
+			// modifier la quantité restante de chaque produit dans la BD
+			for (LigneCommande lc : listeLc) {
+
+				// qté produitBD - qté produitCommande
+				int qtCommande = (int) lc.getQuantite();
+				int qtDispo = lc.getProduit().getQuantite();
+
+			}
+
 		}
-		
 
 	}
 
