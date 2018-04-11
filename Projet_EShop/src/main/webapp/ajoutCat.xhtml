@@ -7,15 +7,27 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="">
-	<ui:define name="header">
-	    Add your header here or delete to use the default
-	</ui:define>
-	<ui:define name="content">
-	    Add your content here or delete to use the default
-	</ui:define>
-	<ui:define name="footer">
-	    Add your footer here or delete to use the default
-	</ui:define>
+<ui:composition >
+	<h2 style="color: blue;">Ajouter une catégorie</h2>
+
+
+	<h:form enctype="multipart/form-data">
+
+		<p:panelGrid columns="2" header="Formulaire d'ajout"
+			style="margin-bottom:50px;text-align:center">
+			<h2>Formulaire d'ajout</h2>
+
+
+
+				
+Nom:<h:inputText value="#{catMB.categorie.nom}" />
+Description : <h:inputText value="#{catMB.categorie.description}" />
+Photo : <p:fileUpload value="#{catMB.uf}" mode="simple"></p:fileUpload>
+					<p:graphicImage value="#{catMB.categorie.image}"></p:graphicImage>
+					<h:commandButton value="Ajouter" action="#{catMB.addCategorie}" />
+
+
+		</p:panelGrid>
+		</h:form>
 </ui:composition>
 </html>

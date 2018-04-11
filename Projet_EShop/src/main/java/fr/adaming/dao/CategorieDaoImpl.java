@@ -51,14 +51,25 @@ public class CategorieDaoImpl implements ICategorieDao{
 	//===============================================================
 	//===============================================================
 	//===============================================================
+	
 	@Override
 	public int deleteCategorie(Categorie cat) {
-		// TODO Auto-generated method stub
-		return 0;
+		//Création de la requête
+		String req="delete FROM Categorie WHERE cat.id=:pIdCat";
+		// Session 
+		Session s=sf.getCurrentSession();
+		// Création du query
+		Query query=s.createQuery(req);
+		// Passage des paramètres
+		query.setParameter("pIdCat", cat.getId());
+		//Récupération du résultat
+		return query.executeUpdate();
 	}
+	
 	//===============================================================
 	//===============================================================
 	//===============================================================
+	
 	@Override
 	public int updateCategorie(Categorie cat) {
 		// TODO Auto-generated method stub

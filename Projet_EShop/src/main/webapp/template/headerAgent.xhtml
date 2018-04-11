@@ -1,78 +1,87 @@
 <!DOCTYPE html >
-<html  xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 
-<title>head Agent</title>
+	<title>head Agent</title>
 </h:head>
 <h:body>
 
-<ui:composition>
-<h:form id="form">
-    <h:panelGrid columns="2" cellpadding="5">
-        <p:outputLabel for="orientation" value="Orientation:" />
-        <p:selectOneButton id="orientation" value="#{aMB.orientation}" onchange="$('#form').submit()">
-            <f:selectItem itemLabel="Horizontal" itemValue="horizontal" />
-            <f:selectItem itemLabel="Vertical" itemValue="vertical" />
-        </p:selectOneButton>
-    </h:panelGrid>
-</h:form>
+	<ui:composition>
+		<h:form id="form">
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="orientation" value="Orientation:" />
+				<p:selectOneButton id="orientation" value="#{aMB.orientation}"
+					onchange="$('#form').submit()">
+					<f:selectItem itemLabel="Horizontal" itemValue="horizontal" />
+					<f:selectItem itemLabel="Vertical" itemValue="vertical" />
+				</p:selectOneButton>
+			</h:panelGrid>
+		</h:form>
 
 
-<h:form>
-<p:megaMenu orientation="#{aMB.orientation}" style="margin-top:20px">
-    <p:submenu label="Gestion des produits" icon="ui-icon-check">
-        <p:column>
-            <p:submenu label="Ajouter produits">
-                <p:menuitem value="formulaire d'ajout" url="ajouterProduit.xhtml" />
-                   
-            </p:submenu>
-            
-        </p:column>
- 
-        <p:column>
-            <p:submenu label="Consulter produits">
-            <p:menuitem value="liste des produits" url="listePr.xhtml" />
-            </p:submenu>
-        </p:column>
- 
-        <p:column>
-         <p:submenu label="Rechercher produit">
-                <p:menuitem value="Formulaire de recherche" url="rechercherProduitParId.xhtml" />           
-                
-                </p:submenu>
-        </p:column>
-    </p:submenu>
- 
-    <p:submenu label="Gestion des categories" icon="ui-icon-check">
- 
-        <p:column>
-            <p:submenu label="Ajouter catégorie">
-                <p:menuitem value="Formulaire d'ajout" url="ajoutCat.xhtml" />
-            </p:submenu>
-        </p:column>
- 
-        <p:column>
-            <p:submenu label="Consulter categories">
-                 <p:menuitem value="Liste des catégories" url="#" />
-            </p:submenu>
-        </p:column>
-        <p:column>
-            <p:submenu label="Rechercher categorie">
-               <p:menuitem value="Formulaire de recherche" url="#" />
-            </p:submenu>
-        </p:column>
-    </p:submenu>
- 
- 
-    <p:menuitem value="Quit" action="#{aMB.seDeconnecter}" url="accueil.xhtml" icon="ui-icon-close" />
-</p:megaMenu>
-</h:form>
+		<h:form>
+			<p:megaMenu orientation="#{aMB.orientation}" style="margin-top:20px">
+				<p:submenu label="Gestion des produits" icon="ui-icon-check">
+					<p:column>
+						<p:submenu label="Ajouter produits">
+							<p:menuitem value="formulaire d'ajout" url="ajouterProduit.xhtml" />
+							<p:menuitem value="formulaire d'ajout" url="ajouterProduit.xhtml" />
 
-</ui:composition>
+						</p:submenu>
+
+					</p:column>
+
+					<p:column>
+						<p:submenu label="Consulter produits">
+							<p:menuitem value="liste des produits" url="listePr.xhtml" />
+						</p:submenu>
+					</p:column>
+
+					<p:column>
+						<p:submenu label="Rechercher produit">
+							<p:menuitem value="Formulaire de recherche"
+								url="rechercherProduitParId.xhtml" />
+
+						</p:submenu>
+					</p:column>
+				</p:submenu>
+
+				<p:submenu label="Gestion des categories" icon="ui-icon-check">
+
+					<p:column>
+						<p:submenu label="Ajouter catégorie">
+							<p:menuitem value="Formulaire d'ajout" url="ajoutCat.xhtml" />
+						</p:submenu>
+					</p:column>
+
+					<p:column>
+						<p:submenu label="Consulter categories">
+							<p:menuitem value="Liste des catégories" url="listeCat.xhtml" />
+						</p:submenu>
+					</p:column>
+					<p:column>
+						<p:submenu label="Rechercher categorie">
+							<p:menuitem value="Formulaire de recherche" url="searchCat.xhtml" />
+						</p:submenu>
+					</p:column>
+					<p:column>
+						<p:submenu label="Supprimer une catégorie">
+							<p:menuitem value="Formulaire de suppression" url="deleteCat.xhtml" />
+						</p:submenu>
+					</p:column>
+				</p:submenu>
+
+
+				<p:menuitem value="Quit" action="#{aMB.seDeconnecter}"
+					url="accueil.xhtml" icon="ui-icon-close" />
+			</p:megaMenu>
+		</h:form>
+
+	</ui:composition>
 
 
 

@@ -50,8 +50,8 @@ public class CategorieServiceImpl implements ICategorieService{
 	
 	@Override
 	public int deleteCategorie(Categorie cat, Administrateur a) {
-		// TODO Auto-generated method stub
-		return 0;
+		cat.setAdmin(a);
+		return catDao.deleteCategorie(cat);
 	}
 
 	//==================================================================
