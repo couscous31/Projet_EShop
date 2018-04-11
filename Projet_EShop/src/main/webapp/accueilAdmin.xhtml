@@ -45,6 +45,45 @@
 			</f:facet>
 
 		</p:dataTable>
+		
+		<p:dataTable var="pr" value="#{sessionScope.produitListe}"
+			rows="6" paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15">
+
+			<p:column headerText="Id">
+				<h:outputText value="#{pr.id}" />
+			</p:column>
+
+			<p:column headerText="Désignation du produit">
+				<h:outputText value="#{pr.designation}" />
+			</p:column>
+
+			<p:column headerText="Description">
+				<h:outputText value="#{pr.description}" />
+			</p:column>
+			
+			<p:column headerText="Prix">
+				<h:outputText value="#{pr.prix}" />
+			</p:column>
+			
+			<p:column headerText="Quantité">
+				<h:outputText value="#{pr.quantite}" />
+			</p:column>
+
+			<p:column headerText="Photo">
+				<h:graphicImage value="#{pr.image}" />
+			</p:column>
+
+			<f:facet name="paginatorTopLeft">
+				<p:commandButton type="button" icon="fa fa-sync" />
+			</f:facet>
+
+			<f:facet name="paginatorBottomRight">
+				<p:commandButton type="button" icon="fa fa-cloud-upload" />
+			</f:facet>
+
+		</p:dataTable>
 
 
 	</h:form>

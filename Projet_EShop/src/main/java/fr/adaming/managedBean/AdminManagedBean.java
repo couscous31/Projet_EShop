@@ -147,7 +147,7 @@ public String getOrientation() {
 		//fermer la session ouverte :
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		
-		return "login";
+		return "accueil";
 	}
 	
 	
