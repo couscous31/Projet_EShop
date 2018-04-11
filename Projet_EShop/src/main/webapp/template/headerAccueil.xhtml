@@ -12,7 +12,59 @@
 <h:body>
 <ui:composition>
 
+<p:megaMenu  style="margin-top:20px">
+    <p:submenu label="Accéder aux produits disponibles">
+    
+        <p:column>
+        <p:submenu>
+                <p:menuitem value="Catalogue des produits" url="produit.xhtml" />
+               </p:submenu> 
+        </p:column>
+ 
+    </p:submenu>
+ 
+    <p:submenu label="Visioner les produits de chaque catégorie" >
+ 
+        <p:column>   
+                <p:submenu>
+                
+                <p:menuitem value="Rechercher une catégorie" url="#" />
+                </p:submenu>
+        </p:column>
+    </p:submenu>
+ 
+    <p:submenu  icon="ui-icon-cart">
+        <p:column>
+                <p:submenu>
+        
+                <p:menuitem value="Votre panier" url="panier.xhtml" />   
+                </p:submenu>        
+        </p:column>
+    </p:submenu>
+ 
+    <p:submenu label="Espace administrateur">
+        <p:column>
+                    <p:submenu>
+            
+                <p:menuitem value="Se connecter" url="login.xhtml" />
+                </p:submenu>
+   
+        </p:column>
 
+    </p:submenu>
+    
+     <p:submenu label="Espace client">
+        <p:column>
+                    <p:submenu>
+            
+                <p:menuitem value="Se connecter" url="" />
+                </p:submenu>
+   
+        </p:column>
+
+    </p:submenu>
+ 
+</p:megaMenu>
 
 
 

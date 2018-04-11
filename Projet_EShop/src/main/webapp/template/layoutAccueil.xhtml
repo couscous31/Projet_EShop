@@ -9,5 +9,25 @@
 </h:head>
 <h:body>
 
+<!-- inclure le header : -->
+<div style="text-align: center; padding: 20px;">
+
+<ui:insert name="header">
+
+<ui:include src="/template/headerAccueil.xhtml"/>
+
+</ui:insert>
+</div>
+
+<!-- inclure le corps : -->
+<div style="text-align: center; padding: 20px;">
+
+<ui:insert name="corps">
+
+<ui:include src="/template/corpAccueil.xhtml"/>
+
+</ui:insert>
+</div>
+
 </h:body>
 </html>

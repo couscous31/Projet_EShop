@@ -88,7 +88,7 @@ public class Produit implements Serializable {
 
 	
 	//getters et setters 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 

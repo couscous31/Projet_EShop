@@ -57,7 +57,7 @@
 						<h:outputText value="#{pr.prix}" />
 					</p:column>
 					
-					<p:column headerText="Categorie" filterBy="#{pr.categorie.id}"
+					<p:column headerText="Categorie" filterBy="#{pr.categorie.nom}"
 						sortBy="#{pr.prix}" filterMatchMode="startsWith">
 						<h:outputText value="#{pr.categorie.id}" />
 					</p:column>
