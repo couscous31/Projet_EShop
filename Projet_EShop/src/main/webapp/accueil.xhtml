@@ -11,7 +11,31 @@
 <ui:composition template="/template/layoutAccueil.xhtml">
 <ui:define name="corps">
 
-
+<h:form id="form">
+    <p:dataGrid var="pr" value="#{prMB.listeProduit}" columns="3" layout="grid"
+        rows="12" paginator="true" id="cars"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+ 
+        <f:facet name="header">
+           Nos ventes
+        </f:facet>
+ 
+        <p:panel header="#{pr.designation}" style="text-align:center">
+            <h:panelGrid columns="1" style="width:100%">
+            
+                <h:graphicImage value="#{pr.image}"/> 
+ 
+             <h3 style="color:green">Description: </h3>  <h:outputText value="#{pr.description}" />
+              <h3 style="color:green">Prix : </h3> <h:outputText value="#{pr.prix}" />  
+             <h3 style="color:green">Quantité disponible : </h3> <h:outputText value="#{pr.quantite}" /> 
+ 
+           
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+</h:form>
 
 
 

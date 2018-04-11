@@ -51,7 +51,7 @@ public class ProduitManagedBean implements Serializable {
 	private String motCle;
 	
 	private List<Produit> filtreProduits;
-
+    private Produit selectedProduit;
 
 	
 	
@@ -141,7 +141,19 @@ public class ProduitManagedBean implements Serializable {
 	}
 	
 	
+	public Produit getSelectedProduit() {
+		return selectedProduit;
+	}
+
+	public void setSelectedProduit(Produit selectedProduit) {
+		this.selectedProduit = selectedProduit;
+	}
+	
+	
+	
 	//Méthodes métiers:	
+
+	
 
 	//ajouter un produit :
 	public String ajouterProduit()
@@ -220,7 +232,7 @@ public class ProduitManagedBean implements Serializable {
 	//recherche par mot clé :
 	public String rechMotCle()
 	{
-		List<Produit> listeRech=produitService.getAllProduit();
+		List<Produit> listeRech=produitService.getParMotCle(motCle);
 		
 		sessionProd.setAttribute("rechListe", listeRech);
 		
