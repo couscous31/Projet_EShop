@@ -199,11 +199,11 @@ public class ClientMB implements Serializable {
 
 				// Pièce jointe
 				MimeBodyPart attachPart = new MimeBodyPart();
-				String attachFile = cheminPDF;
+//				String attachFile = cheminPDF;
 
-				DataSource source = new FileDataSource(attachFile);
-				attachPart.setDataHandler(new DataHandler(source));
-				attachPart.setFileName(new File(attachFile).getName());
+//				DataSource source = new FileDataSource(attachFile);
+//				attachPart.setDataHandler(new DataHandler(source));
+//				attachPart.setFileName(new File(attachFile).getName());
 
 				// adds parts to the multipart
 				multipart.addBodyPart(msgBody);
