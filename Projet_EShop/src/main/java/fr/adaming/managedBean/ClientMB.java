@@ -231,6 +231,8 @@ public class ClientMB implements Serializable {
 
 			}
 			return "accueil";
+		} else {
+			return "accueil";
 		}
 
 	}
