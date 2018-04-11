@@ -78,7 +78,16 @@ public class CategorieManagedBean implements Serializable{
 	
 	// Méthode Ajouter une catégorie
 	public String addCategorie(){
-		
+		Categorie cOut=catService.addCategorie(categorie, admin);
+		if (cOut.getId()!=0) {
+			// Récupérer la liste des catégories 
+			List<Categorie> listeCategories=catService.getAllCategorie(admin);
+			// MEttre à jour la session 
+			maSession.setAttribute("categorieListe", listeCategories);
+			return "accueilAdmin";
+		} else {
+			return "ajoutCat";
+		}
 	}
 
 
