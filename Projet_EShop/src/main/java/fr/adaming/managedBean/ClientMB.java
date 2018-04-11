@@ -199,11 +199,11 @@ public class ClientMB implements Serializable {
 
 				// Pièce jointe
 				MimeBodyPart attachPart = new MimeBodyPart();
-//				String attachFile = cheminPDF;
+				// String attachFile = cheminPDF;
 
-//				DataSource source = new FileDataSource(attachFile);
-//				attachPart.setDataHandler(new DataHandler(source));
-//				attachPart.setFileName(new File(attachFile).getName());
+				// DataSource source = new FileDataSource(attachFile);
+				// attachPart.setDataHandler(new DataHandler(source));
+				// attachPart.setFileName(new File(attachFile).getName());
 
 				// adds parts to the multipart
 				multipart.addBodyPart(msgBody);
@@ -229,9 +229,8 @@ public class ClientMB implements Serializable {
 				// remettre le montant total a zero dans la session
 				maSession.setAttribute("total", 0);
 
-				return "accueil";
 			}
-
+			return "accueil";
 		}
 
 	}
