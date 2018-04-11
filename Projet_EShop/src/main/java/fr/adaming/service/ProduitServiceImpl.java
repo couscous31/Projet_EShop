@@ -52,10 +52,9 @@ public class ProduitServiceImpl implements IProduitService {
 	}
 
 	@Override
-	public List<Produit> produitParCategorie(Produit pr, Categorie cat) {
+	public List<Produit> produitParCategorie(Categorie cat) {
 		
-		pr.setCategorie(cat);
-		return produitDao.produitParCategorie(pr);
+		return produitDao.produitParCategorie(cat);
 	}
 
 	@Override

@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 
 @Repository
@@ -115,8 +116,11 @@ public class ProduitDaoImpl implements IProduitDao {
 		return (Produit) query.uniqueResult();
 	}
 
+
+
+
 	@Override
-	public List<Produit> produitParCategorie(Produit pr) {
+	public List<Produit> produitParCategorie(Categorie cat) {
 		// la requete HQL:
 		String req= "SELECT pr from Produit as pr where pr.categorie.id=:pIdCat";
 		
@@ -127,9 +131,15 @@ public class ProduitDaoImpl implements IProduitDao {
 		Query query=s.createQuery(req);
 		
 		//passage des paramètres :
-		query.setParameter("pIdCat", pr.getCategorie().getId());
+		query.setParameter("pIdCat", cat.getId());
 		
 		return query.list();
 	}
+
+
+
+
+	
+
 
 }

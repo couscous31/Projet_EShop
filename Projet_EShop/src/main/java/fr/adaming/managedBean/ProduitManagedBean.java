@@ -18,6 +18,7 @@ import org.primefaces.model.UploadedFileWrapper;
 import fr.adaming.model.Administrateur;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
+import fr.adaming.service.CategorieServiceImpl;
 import fr.adaming.service.ICategorieService;
 import fr.adaming.service.IProduitService;
 
@@ -29,8 +30,8 @@ public class ProduitManagedBean implements Serializable {
 	@ManagedProperty(value="#{prService}")
 	private IProduitService produitService;
 	
-	/*@ManagedProperty(value="#{catService}")
-	private ICategorieService catService; */
+	@ManagedProperty(value="#{catService}")
+	private ICategorieService catService; 
 
 	//setter de produitService pour l'injection de dépendance:
 	public void setProduitService(IProduitService produitService) {
@@ -38,6 +39,15 @@ public class ProduitManagedBean implements Serializable {
 	}
 	
 	
+	
+	
+	public void setCatService(ICategorieService catService) {
+		this.catService = catService;
+	}
+
+
+
+
 	//déclaration des attributs du ManagedBean :
 	private Produit produit;
 	private Categorie categorie;
@@ -242,8 +252,10 @@ public class ProduitManagedBean implements Serializable {
 	
 	
 	//afficher produit par categorie :
-	public String produitParCategorie()
+	/*public String produitParCategorie()
 	{
+		categorie=catService.get(categorie);
+		
 		List<Produit> liste = produitService.produitParCategorie(produit, categorie);
 		
 		if(liste!=null)
@@ -262,7 +274,7 @@ public class ProduitManagedBean implements Serializable {
 		}
 	}
 
-	
+	*/
 		
 
 }

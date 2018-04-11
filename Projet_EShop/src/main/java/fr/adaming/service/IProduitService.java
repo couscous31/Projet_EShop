@@ -17,7 +17,7 @@ public List<Produit> getAllProduit();
 	 
 	public Produit getProduitById (Produit pr); 
 	
-	public List<Produit> produitParCategorie (Produit pr, Categorie cat);
+	public List<Produit> produitParCategorie  (Categorie cat);
 	
 	public List<Produit> getParMotCle(String motCle);
 
