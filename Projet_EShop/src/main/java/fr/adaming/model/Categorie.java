@@ -71,7 +71,7 @@ public class Categorie implements Serializable{
 	public int getId() {
 		return id;
 	}
-	public void setIdCategorie(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getNom() {

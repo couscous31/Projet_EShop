@@ -83,7 +83,7 @@ public class ProduitDaoImpl implements IProduitDao {
 	@Override
 	public int deleteProduit(Produit pr) {
 		// la requete hql :
-		String req= "DELETE from Produit where pr.id=:pIdPr";
+		String req= "DELETE from Produit as pr where pr.id=:pIdPr";
 		
 		//création de la session :
 		Session s=sf.getCurrentSession();

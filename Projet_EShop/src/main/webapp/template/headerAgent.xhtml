@@ -26,7 +26,7 @@
 <p:megaMenu orientation="#{aMB.orientation}" style="margin-top:20px">
     <p:submenu label="Gestion des produits" icon="ui-icon-check">
         <p:column>
-            <p:submenu label="Ajouter un produits">
+            <p:submenu label="Ajouter produits">
                 <p:menuitem value="formulaire d'ajout" url="ajouterProduit.xhtml" />
                    
             </p:submenu>
@@ -34,14 +34,14 @@
         </p:column>
  
         <p:column>
-            <p:submenu label="Consulter la liste des produits">
-            <p:menuitem value="liste des produits" url="listeProd.xhtml" />
+            <p:submenu label="Consulter produits">
+            <p:menuitem value="liste des produits" url="listePr.xhtml" />
             </p:submenu>
         </p:column>
  
         <p:column>
-         <p:submenu>
-                <p:menuitem value="Formulaire de recherche" url="rechercherProduit.xhtml" />           
+         <p:submenu label="Rechercher produit">
+                <p:menuitem value="Formulaire de recherche" url="rechercherProduitParId.xhtml" />           
                 
                 </p:submenu>
         </p:column>
@@ -50,18 +50,18 @@
     <p:submenu label="Gestion des categories" icon="ui-icon-check">
  
         <p:column>
-            <p:submenu label="Ajouter une catégorie">
-                <p:menuitem value="Formulaire d'ajout" url="#" />
+            <p:submenu label="Ajouter catégorie">
+                <p:menuitem value="Formulaire d'ajout" url="ajoutCat.xhtml" />
             </p:submenu>
         </p:column>
  
         <p:column>
-            <p:submenu label="Consulter la liste des categories">
+            <p:submenu label="Consulter categories">
                  <p:menuitem value="Liste des catégories" url="#" />
             </p:submenu>
         </p:column>
         <p:column>
-            <p:submenu label="Rechercher une categorie dans la liste">
+            <p:submenu label="Rechercher categorie">
                <p:menuitem value="Formulaire de recherche" url="#" />
             </p:submenu>
         </p:column>

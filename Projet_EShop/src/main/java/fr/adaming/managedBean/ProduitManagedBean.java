@@ -18,6 +18,7 @@ import org.primefaces.model.UploadedFileWrapper;
 import fr.adaming.model.Administrateur;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
+import fr.adaming.service.ICategorieService;
 import fr.adaming.service.IProduitService;
 
 @ManagedBean(name="prMB")
@@ -27,6 +28,9 @@ public class ProduitManagedBean implements Serializable {
 	//transformation de l'association uml en java :
 	@ManagedProperty(value="#{prService}")
 	private IProduitService produitService;
+	
+	/*@ManagedProperty(value="#{catService}")
+	private ICategorieService catService; */
 
 	//setter de produitService pour l'injection de dépendance:
 	public void setProduitService(IProduitService produitService) {
@@ -154,7 +158,7 @@ public class ProduitManagedBean implements Serializable {
 			
 			sessionProd.setAttribute("produitListe", liste);
 			
-			return "accueil";
+			return "accueilAdmin";
 		}
 		else 
 		{

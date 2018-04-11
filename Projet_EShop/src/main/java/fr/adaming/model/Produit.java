@@ -23,7 +23,7 @@ public class Produit implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_p")
-	private long id;
+	private int id;
 	private String designation;
 	private String description;
 	private double prix;
@@ -54,6 +54,8 @@ public class Produit implements Serializable {
 	//constructeurs :
 	public Produit() {
 		super();
+		this.categorie=new Categorie();
+		
 	}
 
 
@@ -66,10 +68,11 @@ public class Produit implements Serializable {
 		this.quantite = quantite;
 		this.selectionne = selectionne;
 		this.photoProd = photoProd;
+		
 	}
 
 
-	public Produit(long id, String designation, String description, double prix, int quantite, boolean selectionne,
+	public Produit(int id, String designation, String description, double prix, int quantite, boolean selectionne,
 			byte[] photoProd) {
 		super();
 		this.id = id;
@@ -79,6 +82,7 @@ public class Produit implements Serializable {
 		this.quantite = quantite;
 		this.selectionne = selectionne;
 		this.photoProd = photoProd;
+		
 	}
 
 
@@ -89,7 +93,7 @@ public class Produit implements Serializable {
 	}
 
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
