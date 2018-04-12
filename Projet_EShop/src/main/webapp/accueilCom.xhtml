@@ -17,7 +17,41 @@
 	<ui:composition template="/template/layoutAccueil.xhtml">
 		<ui:define name="corps">
 
-		
+			<h:form>
+
+				<p:dataTable var="com" value="#{comMB.commandesListe}">
+
+					<f:facet name="header">Liste des commandes</f:facet>
+
+					<p:column headerText="Id">
+						<h:outputText value="#{com.id}" />
+					</p:column>
+
+					<p:column headerText="Date">
+						<h:outputText value="#{com.date}" />
+					</p:column>
+
+					<p:column headerText="Opération">
+						<h:commandLink value="Supprimer" action="#{comMB.supCom}"
+							update="@all">
+							<f:setPropertyActionListener value="#{com.id}"
+								target="#{comMB.commande.id}" />
+						</h:commandLink>
+					</p:column>
+
+				</p:dataTable>
+
+			</h:form>
+
+			<br />
+
+			<h:form>
+
+				<h:panelGrid columns="2">
+					<h:button value="Ajouter Commande" outcome="ajoutCom.xhtml" />
+				</h:panelGrid>
+
+			</h:form>
 
 
 		</ui:define>
