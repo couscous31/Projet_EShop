@@ -2,6 +2,7 @@ package fr.adaming.managedBean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -11,6 +12,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import fr.adaming.model.Client;
+import fr.adaming.model.Commande;
 import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Panier;
 import fr.adaming.model.Produit;
@@ -172,6 +175,49 @@ public class PanierMB implements Serializable {
 			return "rechProduitMotCle";
 		}
 
+	}
+
+	// Valider le panier
+	public String validerPanier() {
+
+		// récup la liste de lc dans la session
+		List<LigneCommande> lcOut = (List<LigneCommande>) maSession.getAttribute("lcListe");
+
+		// vérifier que la liste n'est pas nulle
+		if (lcOut != null) {
+
+			// enregistre la commande
+			Commande comIn = new Commande();
+			comIn.setDate(new Date());
+			comIn.setListeCl(lcOut);
+
+			// création d'un client vide
+			Client cl = new Client();
+
+			// ajout de la commande dans la BD et récup son id
+			Commande comOut = comService.addCom(comIn, cl);
+
+			// enregistrement de la commande dans la session
+			maSession.setAttribute("comSession", comOut);
+
+			return "client";
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Votre panier est vide."));
+			return "panier";
+		}
+
+	}
+
+	// Annuler le panier
+	public String annulerPanier() {
+
+		// vider la liste
+		maSession.setAttribute("lcListe", null);
+
+		// remmetre le montant à zero
+		maSession.setAttribute("total", 0);
+
+		return "accueil";
 	}
 
 }

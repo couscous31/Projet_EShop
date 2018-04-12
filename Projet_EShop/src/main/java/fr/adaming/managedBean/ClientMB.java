@@ -231,8 +231,22 @@ public class ClientMB implements Serializable {
 
 			}
 			return "accueil";
+			
 		} else {
-			return "accueil";
+			// ajouter un client
+			// appel de la méthode
+			Client cl = clService.addClient(client);
+
+			if (cl.getId() != 0) {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Vous êtes un nouveau client."));
+				return "client";
+
+			} else {
+				FacesContext.getCurrentInstance().addMessage(null,
+						new FacesMessage("Votre ajout à notre BD a échoué."));
+				return "client";
+			}
+
 		}
 
 	}
