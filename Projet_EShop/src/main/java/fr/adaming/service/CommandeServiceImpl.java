@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import fr.adaming.dao.ICommandeDao;
 import fr.adaming.model.Client;
 import fr.adaming.model.Commande;
+import fr.adaming.model.LigneCommande;
 
 @Service("commandeService")
 @Transactional
@@ -42,7 +43,13 @@ public class CommandeServiceImpl implements ICommandeService{
 
 	@Override
 	public String genererPDF(Commande com, double montant) {
-		// TODO Auto-generated method stub
+		
+		//récup la liste des lignes de com
+		List<LigneCommande> listeLc = com.getListeCl();
+		
+		Document 
+		
+		
 		return null;
 	}
 
