@@ -1,6 +1,7 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -55,6 +56,8 @@ public class ProduitManagedBean implements Serializable {
 	private List<Produit> listeProduit;
 	private UploadedFile uf;
 	private boolean indice;
+	private boolean indice2;
+
 	
 	HttpSession sessionProd;
 	
@@ -70,6 +73,10 @@ public class ProduitManagedBean implements Serializable {
 		this.categorie=new Categorie();
 		this.uf=new UploadedFileWrapper();
 		this.indice=false;
+		this.indice2=false;
+		
+		listeProduit=new ArrayList<Produit>();
+
 	}
 	
 	@PostConstruct
@@ -159,11 +166,20 @@ public class ProduitManagedBean implements Serializable {
 		this.selectedProduit = selectedProduit;
 	}
 	
+	public boolean isIndice2() {
+		return indice2;
+	}
+
+
+
+
+	public void setIndice2(boolean indice2) {
+		this.indice2 = indice2;
+	}
 	
 	
 	//Méthodes métiers:	
 
-	
 
 	//ajouter un produit :
 	public String ajouterProduit()
@@ -252,29 +268,27 @@ public class ProduitManagedBean implements Serializable {
 	
 	
 	//afficher produit par categorie :
-	/*public String produitParCategorie()
+	public String produitParCategorie()
 	{
-		categorie=catService.get(categorie);
-		
-		List<Produit> liste = produitService.produitParCategorie(produit, categorie);
+	List<Produit> liste=produitService.produitParCategorie(categorie);
 		
 		if(liste!=null)
 		{
-			//récupérer la nouvelle liste :
-			//List<Produit> liste=produitService.getAllProduit();
+			this.listeProduit=liste;
+			this.indice2=true;
+			return "produitByCat";
 			
-			//la mettre à jour :
-			sessionProd.setAttribute("produitListe", liste);
-			
-			return "produitParCategorie";
 		}
+		
 		else
 		{
-			return "accueil";
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la categorie recherchée n'est pas disponible sur notre site"));
+			this.indice2=false;
+			return "produitByCat";
 		}
 	}
 
-	*/
+	
 		
 
 }

@@ -19,6 +19,7 @@ public List<Produit> getAllProduit();
 	
 	public List<Produit> produitParCategorie  (Categorie cat);
 	
+	
 	public List<Produit> getParMotCle(String motCle);
 
 }
