@@ -27,6 +27,9 @@
 
 
 	<h:form>
+	
+	<ui:composition template="/template/layoutAccueil.xhtml">
+<ui:define name="corps">
 
 		<p:carousel value="#{sessionScope.rechListe}"
 
@@ -52,13 +55,8 @@
 
 
 
-				<h:outputText value="Id:" />
 
-				<h:outputText value="#{pr.id}" />
-
-
-
-				<h:outputText value="Désignation:" />
+				<h:outputText value="Nom :" />
 
 				<h:outputText value="#{pr.designation}" />
 
@@ -87,6 +85,9 @@
 
 
 		</p:carousel>
+		
+		</ui:define>
+		</ui:composition>
 
 	</h:form>
 

@@ -16,6 +16,11 @@
 <h:body>
 
 <h:form>
+
+
+<ui:composition template="/template/layoutAccueil.xhtml">
+<ui:define name="corps">
+
 				<p:dataTable id="tableStateDT" var="pr"
 					value="#{sessionScope.produitListe}" widgetVar="carsTable"
 					multiViewState="true" rows="10" paginator="true"
@@ -70,6 +75,9 @@
 					</p:column>
 					
 					</p:dataTable>
+					
+			</ui:define>
+			</ui:composition>		
 
 			</h:form>
 
