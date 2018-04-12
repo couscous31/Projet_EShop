@@ -85,7 +85,7 @@ public class CommandeServiceImpl implements ICommandeService {
 			nom.setSpacingAfter(2);
 			document.add(nom);
 
-			Paragraph adresse = new Paragraph(com.getClient().getAdresse(), FontFactory.getFont(FontFactory.HELVETICA, 12))
+			Paragraph adresse = new Paragraph(com.getClient().getAdresse(), FontFactory.getFont(FontFactory.HELVETICA, 12));
 			adresse.setSpacingAfter(2);
 			document.add(adresse);
 
