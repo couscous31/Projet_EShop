@@ -157,6 +157,7 @@ public class ClientMB implements Serializable {
 			}
 
 			// générer un PDF
+			String cheminPDF = comService.genererPDF(comOut, total);
 
 			// envoyer par mail la commande PDF
 			final String username = "couscous31java@gmail.com";
@@ -199,11 +200,11 @@ public class ClientMB implements Serializable {
 
 				// Pièce jointe
 				MimeBodyPart attachPart = new MimeBodyPart();
-				// String attachFile = cheminPDF;
+				String attachFile = cheminPDF;
 
-				// DataSource source = new FileDataSource(attachFile);
-				// attachPart.setDataHandler(new DataHandler(source));
-				// attachPart.setFileName(new File(attachFile).getName());
+				DataSource source = new FileDataSource(attachFile);
+				attachPart.setDataHandler(new DataHandler(source));
+				attachPart.setFileName(new File(attachFile).getName());
 
 				// adds parts to the multipart
 				multipart.addBodyPart(msgBody);
@@ -231,7 +232,7 @@ public class ClientMB implements Serializable {
 
 			}
 			return "accueil";
-			
+
 		} else {
 			// ajouter un client
 			// appel de la méthode
