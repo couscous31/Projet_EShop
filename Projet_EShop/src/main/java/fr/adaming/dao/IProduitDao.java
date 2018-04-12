@@ -17,7 +17,6 @@ public interface IProduitDao {
 	 
 	public Produit getProduitById (Produit pr); 
 	
-	
 	public List<Produit> produitParCategorie (Categorie cat);
 	
 

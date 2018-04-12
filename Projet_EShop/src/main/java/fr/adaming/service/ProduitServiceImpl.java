@@ -57,6 +57,7 @@ public class ProduitServiceImpl implements IProduitService {
 		return produitDao.produitParCategorie(cat);
 	}
 	
+	
 
 	@Override
 	public List<Produit> getParMotCle(String motCle) {

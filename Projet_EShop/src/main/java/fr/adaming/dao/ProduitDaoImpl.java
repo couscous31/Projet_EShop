@@ -119,7 +119,6 @@ public class ProduitDaoImpl implements IProduitDao {
 
 
 
-	
 	@Override
 	public List<Produit> produitParCategorie(Categorie cat) {
 		// la requete HQL:

@@ -66,7 +66,8 @@ public class ProduitManagedBean implements Serializable {
 	private List<Produit> filtreProduits;
     private Produit selectedProduit;
 
-	
+    
+    
 	
 	public ProduitManagedBean() {
 		this.produit=new Produit();
