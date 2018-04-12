@@ -39,8 +39,8 @@ public class CategorieServiceImpl implements ICategorieService{
 	
 
 	@Override
-	public Categorie addCategorie(Categorie cat, Administrateur a) {
-		cat.setAdmin(a);
+	public Categorie addCategorie(Categorie cat) {
+
 		return catDao.addCategorie(cat);
 	}
 
@@ -60,12 +60,21 @@ public class CategorieServiceImpl implements ICategorieService{
 	
 	@Override
 	public int updateCategorie(Categorie cat, Administrateur a) {
-		// TODO Auto-generated method stub
-		return 0;
+		cat.setAdmin(a);
+		return catDao.updateCategorie(cat);
 	}
 	//==================================================================
 	//==================================================================
 	//==================================================================
+
+
+
+
+	@Override
+	public Categorie getCatById(Categorie cat, Administrateur a) {
+		cat.setAdmin(a);
+		return catDao.getCatById(cat);
+	}
 	
 
 }

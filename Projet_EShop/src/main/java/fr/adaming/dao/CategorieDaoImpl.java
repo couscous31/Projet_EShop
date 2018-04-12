@@ -2,6 +2,7 @@ package fr.adaming.dao;
 
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -34,8 +35,14 @@ public class CategorieDaoImpl implements ICategorieDao{
 		Query query=s.createQuery(req);
 		// Passage des paramètres 
 		query.setParameter("pIdAdm", a.getId());
-		//Envoi et récupération du résultat 
+		//Récupération de la liste 
 		return query.list();
+		
+//		for (Categorie categorie:listeCats){
+//			categorie.setImage("data:image/png;base64,"+Base64.encodeBase64String(categorie.getPhoto()));
+//		}
+		
+	
 	}
 	//===============================================================
 	//===============================================================
@@ -43,6 +50,7 @@ public class CategorieDaoImpl implements ICategorieDao{
 
 	@Override
 	public Categorie addCategorie(Categorie cat) {
+		// Création de la requête 
 		// Récupération de la session
 		Session s=sf.getCurrentSession();
 		s.save(cat);
@@ -55,7 +63,7 @@ public class CategorieDaoImpl implements ICategorieDao{
 	@Override
 	public int deleteCategorie(Categorie cat) {
 		//Création de la requête
-		String req="delete FROM Categorie WHERE cat.id=:pIdCat";
+		String req="delete FROM Categorie as cat WHERE cat.id=:pIdCat";
 		// Session 
 		Session s=sf.getCurrentSession();
 		// Création du query
@@ -72,12 +80,37 @@ public class CategorieDaoImpl implements ICategorieDao{
 	
 	@Override
 	public int updateCategorie(Categorie cat) {
-		// TODO Auto-generated method stub
-		return 0;
+		// Création de la requête
+		String req="UPDATE Categorie as cat SET cat.nom=:pNom, cat.photo=:pPhoto, cat.description=:pDescr";
+		//Session
+		Session s=sf.getCurrentSession();
+		//Création du query
+		Query query=s.createQuery(req);
+		// Assignation des paramètres
+		query.setParameter("pNom", cat.getNom());
+		query.setParameter("pPhoto", cat.getPhoto());
+		query.setParameter("pDescr", cat.getDescription());
+		// Envoi et récupération de la requête
+		return query.executeUpdate();
 	}
 	//===============================================================
 	//===============================================================
 	//===============================================================
+
+	@Override
+	public Categorie getCatById(Categorie cat) {
+		// Création de la requête
+		String req="SELECT cat FROM Categorie as cat WHERE cat.id=:pIdCat";
+		//Session
+		Session s=sf.getCurrentSession();
+		// Création du Query
+		Query query=s.createQuery(req);
+		// Assignation des paramètres
+		query.setParameter("pIdCat", cat.getId());
+		// Envoi et récupération de la requête
+		return (Categorie) query.uniqueResult();
+	
+	}
 
 
 

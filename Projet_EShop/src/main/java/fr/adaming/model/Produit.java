@@ -2,6 +2,7 @@ package fr.adaming.model;
 
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -195,6 +196,15 @@ public class Produit implements Serializable {
 
 	public void setAdministrateur(Administrateur administrateur) {
 		this.administrateur = administrateur;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Produit [id=" + id + ", designation=" + designation + ", description=" + description + ", prix=" + prix
+				+ ", quantite=" + quantite + ", selectionne=" + selectionne + ", photoProd="
+				+ Arrays.toString(photoProd) + ", image=" + image + ", categorie=" + categorie + ", listeLigneCom="
+				+ listeLigneCom + ", administrateur=" + administrateur + "]";
 	}
 	
 	

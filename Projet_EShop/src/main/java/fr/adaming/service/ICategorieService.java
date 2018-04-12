@@ -9,10 +9,12 @@ public interface ICategorieService {
 	
 	public List<Categorie> getAllCategorie(Administrateur a);
 	
-	public Categorie addCategorie(Categorie cat, Administrateur a);
+	public Categorie addCategorie(Categorie cat);
 	
 	public int deleteCategorie(Categorie cat, Administrateur a);
 	
 	public int updateCategorie(Categorie cat, Administrateur a);
+	
+	public Categorie getCatById(Categorie cat, Administrateur a);
 	
 }

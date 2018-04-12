@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="">
+<h:form>
+<p:panelGrid columns="2">
+Id : <h:inputText value="#{catMB.categorie.id}"></h:inputText>
+
+<h:commandButton value="rechercher" actionListener="#{catMB.searchCategorie}" update="@all"></h:commandButton>
+
+</p:panelGrid>
+</h:form>
+
+
+<p:dataTable var="cat" value="#{catMB.categorie}" rendered="#{catMB.indice}">
+    <p:column headerText="Id">
+        <h:outputText value="#{cat.id}" />
+    </p:column>
+ 
+    <p:column headerText="nom">
+        <h:outputText value="#{cat.nom}" />
+    </p:column>
+ 
+    <p:column headerText="Photo">
+        <h:outputText value="#{cat.photo}" />
+    </p:column>
+ 
+    <p:column headerText="Description">
+        <h:outputText value="#{cat.description}" />
+    </p:column>
+</p:dataTable>
+</ui:composition>
+</html>

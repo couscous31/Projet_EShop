@@ -15,4 +15,6 @@ public interface ICategorieDao {
 	
 	public int updateCategorie(Categorie cat);
 	
+	public Categorie getCatById(Categorie cat);
+	
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -35,6 +36,7 @@ public class CategorieManagedBean implements Serializable{
 	private Administrateur admin;
 	private List<Categorie> listeCategories;
 	HttpSession maSession;
+	private boolean indice=false;
 	private UploadedFile uf;
 
 	//Déclaration du constructeur vide 
@@ -72,13 +74,12 @@ public class CategorieManagedBean implements Serializable{
 	public void setListeCategories(List<Categorie> listeCategories) {
 		this.listeCategories = listeCategories;
 	}
-	
-	@PostConstruct
-	public void init()
-	{
-	maSession=	 (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-	this.admin=(Administrateur) maSession.getAttribute("adminSession");
-	}
+//	
+//	@PostConstruct
+//	public void init(){
+//	maSession=	 (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+//	this.admin=(Administrateur) maSession.getAttribute("adminSession");
+//	}
 
 	
 	
@@ -98,14 +99,41 @@ public class CategorieManagedBean implements Serializable{
 		this.uf = uf;
 	}
 
+	public boolean isIndice() {
+		return indice;
+	}
+
+	public void setIndice(boolean indice) {
+		this.indice = indice;
+	}
+	
+	
+	
+	
+	@PostConstruct
+	public void init()
+	{
+		//Pour afficher liste produit dans accueil général :
+		this.listeCategories=catService.getAllCategorie(admin);
+		
+		//récupération de la session ouverte:
+		this.maSession=(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		
+		//récupération de l'administrateur de la session :
+		this.admin= (Administrateur) maSession.getAttribute("adminSession");
+	}
+	
+	
 	// Méthode Ajouter une catégorie
 	public String addCategorie(){
-		this.categorie.setPhoto(this.uf.getContents());
-		Categorie cOut=catService.addCategorie(categorie, admin);
+//		this.categorie.setPhoto(this.uf.getContents());
+		Categorie cOut=catService.addCategorie(categorie);
 		if (cOut.getId()!=0) {
 			// Récupérer la liste des catégories 
 			List<Categorie> listeCategories=catService.getAllCategorie(admin);
 			// MEttre à jour la session 
+			System.out.println(listeCategories);
+			System.out.println("============ ManagedBean Categorie - AFfichage =============");
 			maSession.setAttribute("categorieListe", listeCategories);
 			return "accueilAdmin";
 		} else {
@@ -118,7 +146,7 @@ public class CategorieManagedBean implements Serializable{
 		int verif=catService.deleteCategorie(categorie, admin);
 		if (verif!=0){
 			listeCategories=catService.getAllCategorie(admin);
-			maSession.setAttribute("categoriesListe", listeCategories);
+			maSession.setAttribute("categorieListe", listeCategories);
 			return "accueilAdmin";
 		} else {
 			return "deleteCat";
@@ -126,6 +154,45 @@ public class CategorieManagedBean implements Serializable{
 		
 	}
 
+	
+	// Méthode modifier une catégorie
+	public String updateCategorie(){
+		int verif=catService.updateCategorie(categorie, admin);
+		if (verif!=0){
+			// Récupération de la liste
+			listeCategories=catService.getAllCategorie(admin);
+			// Mettre à jour la session
+			maSession.setAttribute("categoriesListe", listeCategories);
+			return "accueilAdmin";
+		} else {
+			return "updateCat";
+		}
+	}
+	
+	//Méthode rechercher une catégorie par l'ID 
+	public void searchCategorie(){
+		this.categorie=catService.getCatById(categorie, admin);
+		if(categorie!=null){
+			this.indice=true;
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Aucune catégorie ne correspond à cet Id"));
+			this.indice=false;
+		}
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 }
