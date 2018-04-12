@@ -1,0 +1,53 @@
+<!DOCTYPE html >
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>Client</title>
+
+</h:head>
+
+<h:body>
+
+	<ui:composition template="/template/layoutAccueil.xhtml">
+		<ui:define name="corps">
+
+			<h2>Finaliser votre commande</h2>
+
+			<h:form>
+
+				<h:panelGrid columns="2">
+
+		 			Nom: <h:inputText value="#{clMB.client.nom}" />
+		 			Prénom : <h:inputText value="#{clMB.client.prenom}"/>
+					Adresse: <h:inputText value="#{clMB.client.adresse}" />
+					Mail: <h:inputText value="#{clMB.client.mail}" />
+					Numéro de téléphone: <h:inputText value="#{clMB.client.tel}" />
+
+					<h:commandButton value="Valider votre commande" action="#{clMB.seConnecter}"
+						styleClass="boutons" />
+
+					<h:commandButton value="Annuler votre commande"
+						action="#{clMB.annulerCommande}" styleClass="boutons" />
+
+				</h:panelGrid>
+
+			</h:form>
+
+			<h:messages style="color:red" />
+
+
+
+
+		</ui:define>
+	</ui:composition>
+
+
+</h:body>
+
+</html>

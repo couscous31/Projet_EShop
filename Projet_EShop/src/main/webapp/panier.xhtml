@@ -3,23 +3,75 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 
-<title></title>
+	<title>Panier</title>
 
 </h:head>
 
 <h:body>
 
+	<ui:composition template="/template/layoutAccueil.xhtml">
+		<ui:define name="corps">
+
+			<h:form>
+
+				<p:dataTable var="lc" value="#{sessionScope.lcListe}">
+					<f:facet name="header">Commande du panier</f:facet>
+
+					<p:column headerText="Modèle">
+						<h:outputText value="#{lc.produit.designation}" />
+					</p:column>
+
+					<p:column headerText="Description du produit">
+						<h:outputText value="#{lc.produit.description}" />
+					</p:column>
+
+					<p:column headerText="Prix du modèle">
+						<h:outputText value="#{lc.produit.prix}" />
+					</p:column>
+
+					<p:column headerText="Quantite">
+						<h:outputText value="#{lc.quantite}" />
+					</p:column>
+
+					<p:column headerText="Montant">
+						<h:outputText value="#{lc.prix}" />
+					</p:column>
+
+				</p:dataTable>
 
 
+				<h1 align="right" style="color: #ff1a8c">Montant total:
+					#{sessionScope.total} €</h1>
+
+			</h:form>
+
+			<h:form>
+
+				<h:panelGrid columns="2">
+					<h:commandButton value="Annuler le panier"
+						action="#{panierMB.annulerPanier}" styleClass="boutons" />
+
+					<h:button value="Valider le panier" outcome="client.xhtml"
+						styleClass="boutons" />
+
+					<h:button value="Retour" outcome="accueil.xhtml"
+						styleClass="boutons" />
+
+				</h:panelGrid>
+
+			</h:form>
 
 
+			<h:messages style="color:red" />
 
 
-
+		</ui:define>
+	</ui:composition>
 
 
 </h:body>
