@@ -24,12 +24,12 @@
 
 <h:body>
 
-
+<ui:composition template="/template/layoutAccueil.xhtml">
+<ui:define name="corps">
 
 	<h:form>
 	
-	<ui:composition template="/template/layoutAccueil.xhtml">
-<ui:define name="corps">
+	
 
 		<p:carousel value="#{sessionScope.rechListe}"
 
@@ -86,12 +86,12 @@
 
 		</p:carousel>
 		
-		</ui:define>
-		</ui:composition>
+		
 
 	</h:form>
 
-
+</ui:define>
+		</ui:composition>
 
 	
 

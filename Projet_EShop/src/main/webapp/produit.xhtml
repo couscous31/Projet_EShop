@@ -14,12 +14,13 @@
 
 
 <h:body>
+<ui:composition template="/template/layoutAccueil.xhtml">
+<ui:define name="corps">
 
 <h:form>
 
 
-<ui:composition template="/template/layoutAccueil.xhtml">
-<ui:define name="corps">
+
 
 				<p:dataTable id="tableStateDT" var="pr"
 					value="#{sessionScope.produitListe}" widgetVar="carsTable"
@@ -76,10 +77,12 @@
 					
 					</p:dataTable>
 					
-			</ui:define>
-			</ui:composition>		
+					
 
 			</h:form>
+			
+			</ui:define>
+			</ui:composition>
 
 </h:body>
 </html>
