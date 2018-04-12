@@ -17,7 +17,21 @@
 	<ui:composition template="/template/layoutAccueil.xhtml">
 		<ui:define name="corps">
 
-		
+			<h:form enctype="multipart/form-data">
+
+				<p:panelGrid columns="2" header="Formulaire d'ajout"
+					style="margin-bottom:50px;">
+
+					<h:outputText value="Date de la commande : " />
+					<p:calendar value="#{comMB.commande.date}" />
+
+
+					<p:commandButton value="Ajouter" ajax="false"
+						action="#{prMB.ajouterProduit}" />
+
+				</p:panelGrid>
+
+			</h:form>
 
 
 		</ui:define>
