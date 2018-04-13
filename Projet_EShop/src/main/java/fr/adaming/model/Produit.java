@@ -199,24 +199,5 @@ public class Produit implements Serializable {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Produit [id=" + id + ", designation=" + designation + ", description=" + description + ", prix=" + prix
-				+ ", quantite=" + quantite + ", selectionne=" + selectionne + ", photoProd="
-				+ Arrays.toString(photoProd) + ", image=" + image + ", categorie=" + categorie + ", listeLigneCom="
-				+ listeLigneCom + ", administrateur=" + administrateur + "]";
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

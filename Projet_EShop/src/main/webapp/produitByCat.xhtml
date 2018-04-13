@@ -1,61 +1,51 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html  xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 
 <title>Insert title here</title>
 </h:head>
 <h:body>
-<ui:composition template="/template/layoutAccueil.xhtml">
-		<ui:define name="corps">
-		
-		
-		<h:form>
+	
+	<h:form>
 				<h:panelGrid columns="2">
 				ID categorie : <h:inputText value="#{prMB.categorie.id}" />
 					<p:commandButton value="Rechercher"
 						action="#{prMB.produitParCategorie}"  />
 				</h:panelGrid>
 			</h:form>
-		
-		
-		<h:form>
+	
+	<h:form>
+				
 
-				<p:dataTable var="pr" value="#{sessionScope.produitListe}"
-					style="text-align: center">
-					<f:facet name="header">Liste des produits</f:facet>
 
-					<p:column headerText="Id" style="text-align: center">
-						<h:outputText value="#{pr.id}" />
-					</p:column>
 
-					<p:column headerText="Désignation" style="text-align: center">
-						<h:outputText value="#{pr.designation}" />
-					</p:column>
+		<p:dataGrid var="pr" value="#{sessionScope.produitListe}" columns="4"
+			layout="grid" id="pr">
 
-					<p:column headerText="Description" style="text-align: center">
-						<h:outputText value="#{pr.description}" />
-					</p:column>
+
+			<p:panel header="#{pr.designation}" style="text-align:center">
+				<h:panelGrid columns="1" style="width:100%">
 					
-					<p:column headerText="Prix" style="text-align: center">
-						<h:outputText value="#{pr.prix}" />
-					</p:column>
-					
-					<p:column headerText="Quantité" style="text-align: center">
-						<h:outputText value="#{pr.quantite}" />
-					</p:column>
+					<h:commandLink action="#{prMB.produitDansSess}">
+						<h:graphicImage value="#{pr.image}" styleClass="imagesProduits"/>
+						<f:setPropertyActionListener value="#{pr}"
+							target="#{prMB.produit}" />
+					</h:commandLink>
 
-					<p:column headerText="Photo" style="text-align: center">
-						<p:graphicImage value="#{pr.photoProd}" />
-					</p:column>
-
-				</p:dataTable>
-
-			</h:form>
-			
+					<h:outputText value="#{pr.description}" />
+					<h:outputText value="#{pr.prix} €" style="font-weight: bold;"/> 
+					<h:outputText value="#{pr.categorie.nom}" style="font-weight: bold;"/> 
+				</h:panelGrid>
+			</p:panel>
+		</p:dataGrid>
+	</h:form>
+</h:body>
+</html>
 		
 		</ui:define>
 		</ui:composition>

@@ -234,21 +234,27 @@ public class ProduitManagedBean implements Serializable {
 
 	}
 
-	// afficher produit par categorie :
+	public String produitDansSess()
+	{
+		//charger un produit de la liste dans la session
+		sessionProd.setAttribute("produitListe", produit);
+		return "produit";
+		
+	}
+	
+	
 	public String produitParCategorie() {
-		List<Produit> liste = produitService.produitParCategorie(categorie);
-
-		if (liste != null) {
-			this.listeProduit = liste;
-			this.indice2 = true;
-			return "produitByCat";
-
-		} else {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage("la categorie recherchée n'est pas disponible sur notre site"));
-			this.indice2 = false;
-			return "produitByCat";
-		}
+		
+		//appel méthode
+	List<Produit> liste = produitService.produitParCategorie(categorie);
+	
+	//this.listeProduit=liste;
+	
+	//mettre à jour la liste
+	sessionProd.setAttribute("produitListe", liste);
+	//ajout de l'attribut categorie du MB dans la session
+	sessionProd.setAttribute("catListe", categorie);
+	return "produitByCat";
 	}
 
 }

@@ -14,47 +14,36 @@
 
 	<ui:composition template="/template/layoutAgent.xhtml">
 		<ui:define name="corps">
+		
+		<h:form>
+				<p:carousel value="#{sessionScope.catListe}"
+					headerText="Catégorie" var="cat" itemStyle="text-align:center"
+					responsive="true">
+
+					<p:panelGrid columns="2" style="width:100%;margin:10px 0px"
+						columnClasses="label,value" layout="grid"
+						styleClass="ui-panelgrid-blank">
+
+						<f:facet name="header">
+							<h:graphicImage value="#{cat.image}" />
+						</f:facet>
+
+						<h:outputText value="Id:" />
+						<h:outputText value="#{cat.id}" />
+
+						<h:outputText value="Nom:" />
+						<h:outputText value="#{cat.nom}" />
+
+						<h:outputText value="Description:" />
+						<h:outputText value="#{cat.description}" />
+
+					</p:panelGrid>
+
+				</p:carousel>
+			</h:form>
 
 			<h:form>
-				<p:dataScroller value="#{sessionScope.catListe}" var="cat"
-					chunkSize="70" mode="inline" scrollHeight="500">
-
-					<h:panelGrid columns="4" style="width:100%"
-						columnClasses="Photo,Nom de la Categorie, Description, Id">
-						<p:outputPanel>
-							<h:panelGrid columns="7" cellpadding="5">
-								<p:column headerText="Photo">
-									<h:graphicImage value="#{cat.image}" />
-								</p:column>
-								
-								<h:outputText value="Id:" />
-								<h:outputText value="#{cat.id}" style="font-weight:bold" />
-
-								<h:outputText value="Nom:" />
-								<h:outputText value="#{cat.nom}" style="font-weight:bold" />
-
-
-								<h:outputText value="Description:" />
-								<h:outputText value="#{cat.description}"
-									style="font-weight:bold" />
-
-
-
-
-
-
-								<f:facet name="paginatorTopLeft">
-									<p:commandButton type="button" icon="fa fa-sync" />
-								</f:facet>
-
-								<f:facet name="paginatorBottomRight">
-									<p:commandButton type="button" icon="fa fa-cloud-upload" />
-								</f:facet>
-							</h:panelGrid>
-						</p:outputPanel>
-					</h:panelGrid>
-
-				</p:dataScroller>
+				
 
 				<br />
 				<br />
