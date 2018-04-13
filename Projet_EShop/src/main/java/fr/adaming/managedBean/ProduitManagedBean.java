@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.model.UploadedFile;
 import org.primefaces.model.UploadedFileWrapper;
 
@@ -23,33 +24,27 @@ import fr.adaming.service.CategorieServiceImpl;
 import fr.adaming.service.ICategorieService;
 import fr.adaming.service.IProduitService;
 
-@ManagedBean(name="prMB")
+@ManagedBean(name = "prMB")
 @RequestScoped
 public class ProduitManagedBean implements Serializable {
-	
-	//transformation de l'association uml en java :
-	@ManagedProperty(value="#{prService}")
-	private IProduitService produitService;
-	
-	@ManagedProperty(value="#{catService}")
-	private ICategorieService catService; 
 
-	//setter de produitService pour l'injection de dépendance:
+	// transformation de l'association uml en java :
+	@ManagedProperty(value = "#{prService}")
+	private IProduitService produitService;
+
+	@ManagedProperty(value = "#{catService}")
+	private ICategorieService catService;
+
+	// setter de produitService pour l'injection de dépendance:
 	public void setProduitService(IProduitService produitService) {
 		this.produitService = produitService;
 	}
-	
-	
-	
-	
+
 	public void setCatService(ICategorieService catService) {
 		this.catService = catService;
 	}
 
-
-
-
-	//déclaration des attributs du ManagedBean :
+	// déclaration des attributs du ManagedBean :
 	private Produit produit;
 	private Categorie categorie;
 	private Administrateur administrateur;
@@ -58,42 +53,36 @@ public class ProduitManagedBean implements Serializable {
 	private boolean indice;
 	private boolean indice2;
 
-	
 	HttpSession sessionProd;
-	
+
 	private String motCle;
-	
+
 	private List<Produit> filtreProduits;
-    private Produit selectedProduit;
+	private Produit selectedProduit;
 
-    
-    
-	
 	public ProduitManagedBean() {
-		this.produit=new Produit();
-		this.categorie=new Categorie();
-		this.uf=new UploadedFileWrapper();
-		this.indice=false;
-		this.indice2=false;
-		
-		listeProduit=new ArrayList<Produit>();
+		this.produit = new Produit();
+		this.categorie = new Categorie();
+		this.uf = new UploadedFileWrapper();
+		this.indice = false;
+		this.indice2 = false;
+
+		listeProduit = new ArrayList<Produit>();
 
 	}
-	
+
 	@PostConstruct
-	public void init()
-	{
-		//Pour afficher liste produit dans accueil général :
-		this.listeProduit=produitService.getAllProduit();
-		
-		//récupération de la session ouverte:
-		this.sessionProd=(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		
-		//récupération de l'administrateur de la session :
-		this.administrateur= (Administrateur) sessionProd.getAttribute("adminSession");
+	public void init() {
+		// Pour afficher liste produit dans accueil général :
+		this.listeProduit = produitService.getAllProduit();
+
+		// récupération de la session ouverte:
+		this.sessionProd = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+
+		// récupération de l'administrateur de la session :
+		this.administrateur = (Administrateur) sessionProd.getAttribute("adminSession");
 	}
 
-	
 	public Produit getProduit() {
 		return produit;
 	}
@@ -125,7 +114,7 @@ public class ProduitManagedBean implements Serializable {
 	public void setUf(UploadedFile uf) {
 		this.uf = uf;
 	}
-	
+
 	public String getMotCle() {
 		return motCle;
 	}
@@ -133,7 +122,7 @@ public class ProduitManagedBean implements Serializable {
 	public void setMotCle(String motCle) {
 		this.motCle = motCle;
 	}
-	
+
 	public List<Produit> getFiltreProduits() {
 		return filtreProduits;
 	}
@@ -157,8 +146,7 @@ public class ProduitManagedBean implements Serializable {
 	public void setIndice(boolean indice) {
 		this.indice = indice;
 	}
-	
-	
+
 	public Produit getSelectedProduit() {
 		return selectedProduit;
 	}
@@ -166,130 +154,101 @@ public class ProduitManagedBean implements Serializable {
 	public void setSelectedProduit(Produit selectedProduit) {
 		this.selectedProduit = selectedProduit;
 	}
-	
+
 	public boolean isIndice2() {
 		return indice2;
 	}
 
-
-
-
 	public void setIndice2(boolean indice2) {
 		this.indice2 = indice2;
 	}
-	
-	
-	//Méthodes métiers:	
 
+	// Méthodes métiers:
 
-	//ajouter un produit :
-	public String ajouterProduit()
-	{
+	// ajouter un produit :
+	public String ajouterProduit() {
 		this.produit.setPhotoProd(this.uf.getContents());
-		
-		//appel de la méthode ajouter :
-		Produit prAjout= produitService.addProduit(produit);
-		
-		if(prAjout.getId()!=0)
-		{
-			//remettre à jour la liste
-			List<Produit> liste=produitService.getAllProduit();
-			
+
+		// appel de la méthode ajouter :
+		Produit prAjout = produitService.addProduit(produit);
+
+		if (prAjout.getId() != 0) {
+			// remettre à jour la liste
+			List<Produit> liste = produitService.getAllProduit();
+
 			sessionProd.setAttribute("produitListe", liste);
-			
+
 			return "accueilAdmin";
-		}
-		else 
-		{
+		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout du produit n'a pas marché"));
 			return "ajouterProduit";
 		}
 	}
 
-	
-	//modifier les attributs d'un produit :
-	public void editProduit(RowEditEvent event)
-	{
-		//appel de la methode :
+	// modifier les attributs d'un produit :
+	public void editProduit(RowEditEvent event) {
+		// appel de la methode :
 		produitService.updateProduit((Produit) event.getObject());
-		
-		//récupérer la nouvelle liste :
+
+		// récupérer la nouvelle liste :
 		List<Produit> liste = produitService.getAllProduit();
-		
-		//mettre à jour la liste :
+
+		// mettre à jour la liste :
 		sessionProd.setAttribute("produitListe", liste);
 	}
-	
-	
-	//supprimer un produit de la liste :
-	public void supprimerProduit()
-	{
-		
-		int prSuppr=produitService.deleteProduit(produit);
-		
-		if(prSuppr!=0)
-		{
+
+	// supprimer un produit de la liste :
+	public void supprimerProduit() {
+
+		int prSuppr = produitService.deleteProduit(produit);
+
+		if (prSuppr != 0) {
 			List<Produit> liste = produitService.getAllProduit();
 			sessionProd.setAttribute("produitListe", liste);
-		}
-		else
-		{
+		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la suppression n'a pas marché"));
 		}
 	}
-	
-	
-	//rechercher un produit avec son id :
-	public void rechercherProduitById()
-	{
-		try{
-			Produit prSear=produitService.getProduitById(produit);
-			this.produit=prSear;
-			this.indice=true;
-			
-		}
-		catch(Exception ex)
-		{
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la recherche effectuée n'est pas bonne"));
-			this.indice=false;
-		}
-	}
-	
-	
-	//recherche par mot clé :
-	public String rechMotCle()
-	{
-		List<Produit> listeRech=produitService.getParMotCle(motCle);
-		
-		sessionProd.setAttribute("rechListe", listeRech);
-		
-		return "rechProduitMotCle";
-				
-	}
-	
-	
-	//afficher produit par categorie :
-	public String produitParCategorie()
-	{
-	List<Produit> liste=produitService.produitParCategorie(categorie);
-		
-		if(liste!=null)
-		{
-			this.listeProduit=liste;
-			this.indice2=true;
-			return "produitByCat";
-			
-		}
-		
-		else
-		{
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la categorie recherchée n'est pas disponible sur notre site"));
-			this.indice2=false;
-			return "produitByCat";
+
+	// rechercher un produit avec son id :
+	public void rechercherProduitById() {
+		try {
+			Produit prSear = produitService.getProduitById(produit);
+			this.produit = prSear;
+			this.indice = true;
+
+		} catch (Exception ex) {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("la recherche effectuée n'est pas bonne"));
+			this.indice = false;
 		}
 	}
 
-	
-		
+	// recherche par mot clé :
+	public String rechMotCle() {
+		List<Produit> listeRech = produitService.getParMotCle(motCle);
+
+		sessionProd.setAttribute("rechListe", listeRech);
+
+		return "rechProduitMotCle";
+
+	}
+
+	// afficher produit par categorie :
+	public String produitParCategorie() {
+		List<Produit> liste = produitService.produitParCategorie(categorie);
+
+		if (liste != null) {
+			this.listeProduit = liste;
+			this.indice2 = true;
+			return "produitByCat";
+
+		} else {
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("la categorie recherchée n'est pas disponible sur notre site"));
+			this.indice2 = false;
+			return "produitByCat";
+		}
+	}
 
 }

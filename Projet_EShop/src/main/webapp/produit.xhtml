@@ -25,7 +25,7 @@
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="1,2,3,4,5,6,7,8,9,10" selectionMode="single"
 					selection="#{prMB.produit}" rowKey="#{pr.id}"
-					emptyMessage="No cars found with given criteria"
+					emptyMessage="Il n'y a pas de produits."
 					filteredValue="#{prMB.filtreProduits}">
 
 
@@ -64,12 +64,23 @@
 						<h:graphicImage value="#{pr.image}" />
 					</p:column>
 
-					
+
 				</p:dataTable>
 
 			</h:form>
 
+			<br />
 
+			<h:form>
+
+				<h:panelGrid columns="2">
+
+					<h:button value="Produit" outcome="produit2.xhtml"
+						styleClass="boutons" />
+
+				</h:panelGrid>
+
+			</h:form>
 
 		</ui:define>
 	</ui:composition>
