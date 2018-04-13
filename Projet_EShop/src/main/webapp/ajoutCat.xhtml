@@ -7,7 +7,8 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition >
+<ui:composition template="/template/layoutAgent.xhtml">
+<ui:define name="corps">
 	<h2 style="color: blue;">Ajouter une catégorie</h2>
 
 
@@ -23,11 +24,12 @@
 Nom:<h:inputText value="#{catMB.categorie.nom}" />
 Description : <h:inputText value="#{catMB.categorie.description}" />
 Photo : <p:fileUpload value="#{catMB.uf}" mode="simple"></p:fileUpload>
-					<p:graphicImage src="#{catMB.categorie.image}"/>
+					<p:graphicImage src="#{catMB.categorie.image}" height="60px"/>
 					<h:commandButton value="Ajouter" action="#{catMB.addCategorie}" />
 
 
 		</p:panelGrid>
 		</h:form>
+		</ui:define>
 </ui:composition>
 </html>
