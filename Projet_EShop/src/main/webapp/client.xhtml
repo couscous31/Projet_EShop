@@ -19,20 +19,20 @@
 
 			<h2>Finaliser votre commande</h2>
 
-			<h:form>
+			<h:form enctype="multipart/form-data">
 
 				<h:panelGrid columns="2">
 
 		 			Nom: <h:inputText value="#{clMB.client.nom}" />
-		 			Prénom : <h:inputText value="#{clMB.client.prenom}"/>
+		 			Prénom : <h:inputText value="#{clMB.client.prenom}" />
 					Adresse: <h:inputText value="#{clMB.client.adresse}" />
 					Mail: <h:inputText value="#{clMB.client.mail}" />
 					Numéro de téléphone: <h:inputText value="#{clMB.client.tel}" />
 
-					<h:commandButton value="Valider votre commande" action="#{clMB.seConnecter}"
-						styleClass="boutons" />
+					<h:commandButton value="Valider votre commande" ajax="false"
+						action="#{clMB.seConnecter}" styleClass="boutons" />
 
-					<h:commandButton value="Annuler votre commande"
+					<h:commandButton value="Annuler votre commande" ajax="false"
 						action="#{clMB.annulerCommande}" styleClass="boutons" />
 
 				</h:panelGrid>
@@ -40,8 +40,6 @@
 			</h:form>
 
 			<h:messages style="color:red" />
-
-
 
 
 		</ui:define>
