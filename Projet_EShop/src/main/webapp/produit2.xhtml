@@ -20,7 +20,8 @@
 			<h:form>
 
 				<p:dataTable id="checkboxDT" var="pr"
-					value="#{sessionScope.produitListe}" rowKey="#{pr.id}"
+					value="#{sessionScope.produitListe}"
+					selection="#{sessionScope.produitListe}" rowKey="#{pr.id}"
 					style="margin-bottom:0">
 
 					<f:facet name="header">Liste des produits</f:facet>
@@ -55,6 +56,7 @@
 				</p:dataTable>
 
 			</h:form>
+
 
 
 		</ui:define>

@@ -144,7 +144,7 @@ public class PanierMB implements Serializable {
 	public String ajouterLcPanier() {
 
 		// récup le produit dans la session
-		Produit prOut = (Produit) maSession.getAttribute("produitSession");
+		Produit prOut = (Produit) maSession.getAttribute("produit");
 
 		// vérifier que la quantité voulue soit dispo
 		if (this.quantite <= prOut.getQuantite()) {
@@ -172,7 +172,7 @@ public class PanierMB implements Serializable {
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Le produit que vous désirez n'est plus disponible !"));
-			return "rechProduitMotCle";
+			return "produit2";
 		}
 
 	}

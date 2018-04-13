@@ -38,6 +38,8 @@
 
 					<p:ajax event="rowSelect" oncomplete="PF('prDialog').show()" />
 
+					<p:column selectionMode="multiple"
+						style="width:16px;text-align:center" />
 
 					<p:column headerText="Modèle" filterBy="#{pr.designation}"
 						sortBy="#{pr.designation}" filterMatchMode="startsWith">
@@ -64,23 +66,15 @@
 						<h:graphicImage value="#{pr.image}" />
 					</p:column>
 
-
+					<f:facet name="footer">
+						<p:commandButton process="checkboxDT" icon="ui-icon-search"
+							value="Ajouter au panier" action="#{panierMB.ajouterLcPanier}" />
+					</f:facet>
+					
 				</p:dataTable>
 
 			</h:form>
 
-			<br />
-
-			<h:form>
-
-				<h:panelGrid columns="2">
-
-					<h:button value="Produit" outcome="produit2.xhtml"
-						styleClass="boutons" />
-
-				</h:panelGrid>
-
-			</h:form>
 
 		</ui:define>
 	</ui:composition>
