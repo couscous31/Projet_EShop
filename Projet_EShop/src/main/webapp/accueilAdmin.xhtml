@@ -10,93 +10,101 @@
 	<title>ACCUEIL</title>
 </h:head>
 <h:body>
-	<h1 style="color:blue"> ACCUEIL ADMINISTRATEUR</h1>
+	<h1 style="color: blue">ACCUEIL ADMINISTRATEUR</h1>
 
-<ui:composition template="/template/layoutAgent.xhtml">
-<ui:define name="corps">
+	<ui:composition template="/template/layoutAgent.xhtml">
+		<ui:define name="corps">
 
-	<h:form>
+			<h:form>
+				<p:dataScroller value="#{sessionScope.catListe}" var="cat"
+					chunkSize="70" mode="inline" scrollHeight="500">
 
-		<p:dataTable var="cat" value="#{sessionScope.catListe}"
-			rows="6" paginator="true"
-			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15">
+					<h:panelGrid columns="4" style="width:100%"
+						columnClasses="Photo,Nom de la Categorie, Description, Id">
+						<p:outputPanel>
+							<h:panelGrid columns="7" cellpadding="5">
+								<p:column headerText="Photo">
+									<h:graphicImage value="#{cat.image}" />
+								</p:column>
+								
+								<h:outputText value="Id:" />
+								<h:outputText value="#{cat.id}" style="font-weight:bold" />
 
-			<p:column headerText="Id">
-				<h:outputText value="#{cat.id}" />
-			</p:column>
-
-			<p:column headerText="Nom de la Categorie">
-				<h:outputText value="#{cat.nom}" />
-			</p:column>
-
-			<p:column headerText="Description">
-				<h:outputText value="#{cat.description}" />
-			</p:column>
-
-			<p:column headerText="Photo">
-				<h:graphicImage value="#{cat.image}" />
-			</p:column>
-
-			<f:facet name="paginatorTopLeft">
-				<p:commandButton type="button" icon="fa fa-sync" />
-			</f:facet>
-
-			<f:facet name="paginatorBottomRight">
-				<p:commandButton type="button" icon="fa fa-cloud-upload" />
-			</f:facet>
-
-		</p:dataTable>
-		
-		<br/>
-		<br/>
-		
-		<p:dataTable var="pr" value="#{sessionScope.produitListe}"
-			rows="6" paginator="true"
-			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-			rowsPerPageTemplate="5,10,15">
-
-			<p:column headerText="Id">
-				<h:outputText value="#{pr.id}" />
-			</p:column>
-
-			<p:column headerText="Désignation du produit">
-				<h:outputText value="#{pr.designation}" />
-			</p:column>
-
-			<p:column headerText="Description">
-				<h:outputText value="#{pr.description}" />
-			</p:column>
-			
-			<p:column headerText="Prix">
-				<h:outputText value="#{pr.prix}" />
-			</p:column>
-			
-			<p:column headerText="Quantité">
-				<h:outputText value="#{pr.quantite}" />
-			</p:column>
-
-			<p:column headerText="Photo">
-				<h:graphicImage value="#{pr.image}" />
-			</p:column>
-
-			<f:facet name="paginatorTopLeft">
-				<p:commandButton type="button" icon="fa fa-sync" />
-			</f:facet>
-
-			<f:facet name="paginatorBottomRight">
-				<p:commandButton type="button" icon="fa fa-cloud-upload" />
-			</f:facet>
-
-		</p:dataTable>
+								<h:outputText value="Nom:" />
+								<h:outputText value="#{cat.nom}" style="font-weight:bold" />
 
 
-	</h:form>
-	
-</ui:define>
+								<h:outputText value="Description:" />
+								<h:outputText value="#{cat.description}"
+									style="font-weight:bold" />
 
 
-</ui:composition>	
-	
+
+
+
+
+								<f:facet name="paginatorTopLeft">
+									<p:commandButton type="button" icon="fa fa-sync" />
+								</f:facet>
+
+								<f:facet name="paginatorBottomRight">
+									<p:commandButton type="button" icon="fa fa-cloud-upload" />
+								</f:facet>
+							</h:panelGrid>
+						</p:outputPanel>
+					</h:panelGrid>
+
+				</p:dataScroller>
+
+				<br />
+				<br />
+
+				<p:dataTable var="pr" value="#{sessionScope.produitListe}" rows="6"
+					paginator="true"
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+
+					<p:column headerText="Id">
+						<h:outputText value="#{pr.id}" />
+					</p:column>
+
+					<p:column headerText="Désignation du produit">
+						<h:outputText value="#{pr.designation}" />
+					</p:column>
+
+					<p:column headerText="Description">
+						<h:outputText value="#{pr.description}" />
+					</p:column>
+
+					<p:column headerText="Prix">
+						<h:outputText value="#{pr.prix}" />
+					</p:column>
+
+					<p:column headerText="Quantité">
+						<h:outputText value="#{pr.quantite}" />
+					</p:column>
+
+					<p:column headerText="Photo">
+						<h:graphicImage value="#{pr.image}" />
+					</p:column>
+
+					<f:facet name="paginatorTopLeft">
+						<p:commandButton type="button" icon="fa fa-sync" />
+					</f:facet>
+
+					<f:facet name="paginatorBottomRight">
+						<p:commandButton type="button" icon="fa fa-cloud-upload" />
+					</f:facet>
+
+				</p:dataTable>
+
+
+			</h:form>
+
+		</ui:define>
+
+
+	</ui:composition>
+
 </h:body>
 </html>
