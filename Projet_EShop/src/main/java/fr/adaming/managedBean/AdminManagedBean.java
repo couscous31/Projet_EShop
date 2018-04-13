@@ -119,7 +119,7 @@ public String getOrientation() {
 		if (aOut!=null){
 
 			//Récupérer la liste des catégories
-			listeCategories=catService.getAllCategorie(aOut);
+			listeCategories=catService.getAllCategorie();
 			listeProduits=produitService.getAllProduit();
 //			System.out.println(listeCategories);
 			//Ajouter le formateur dans la session 

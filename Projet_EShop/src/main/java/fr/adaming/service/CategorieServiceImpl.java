@@ -29,8 +29,8 @@ public class CategorieServiceImpl implements ICategorieService{
 
 
 	@Override
-	public List<Categorie> getAllCategorie(Administrateur a) {
-		return catDao.getAllCategorie(a);
+	public List<Categorie> getAllCategorie() {
+		return catDao.getAllCategorie();
 	}
 	
 	//==================================================================
@@ -49,8 +49,7 @@ public class CategorieServiceImpl implements ICategorieService{
 	//==================================================================
 	
 	@Override
-	public int deleteCategorie(Categorie cat, Administrateur a) {
-		cat.setAdmin(a);
+	public int deleteCategorie(Categorie cat) {
 		return catDao.deleteCategorie(cat);
 	}
 

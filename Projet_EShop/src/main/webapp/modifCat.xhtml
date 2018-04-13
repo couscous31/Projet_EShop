@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html >
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
@@ -7,27 +6,31 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition >
-	<h2 style="color: blue;">Ajouter une catégorie</h2>
+<ui:composition>
+
+	<h2 style="color: blue;">Modifier une catégorie</h2>
 
 
 	<h:form enctype="multipart/form-data">
 
-		<p:panelGrid columns="2" header="Formulaire d'ajout"
+		<p:panelGrid columns="2" header="Formulaire de modification"
 			style="margin-bottom:50px;text-align:center">
-			<h2>Formulaire d'ajout</h2>
+			<h2>Formulaire de modification</h2>
 
 
-
-				
+Id:<h:inputText value="#{catMB.categorie.id}"/>
 Nom:<h:inputText value="#{catMB.categorie.nom}" />
 Description : <h:inputText value="#{catMB.categorie.description}" />
 Photo : <p:fileUpload value="#{catMB.uf}" mode="simple"></p:fileUpload>
-					<p:graphicImage src="#{catMB.categorie.image}"/>
-					<h:commandButton value="Ajouter" action="#{catMB.addCategorie}" />
+					<p:graphicImage value="#{catMB.categorie.image}"></p:graphicImage>
+					<h:commandButton value="Modifier" action="#{catMB.updateCategorie}" />
 
 
 		</p:panelGrid>
 		</h:form>
+
+
+
+
 </ui:composition>
 </html>

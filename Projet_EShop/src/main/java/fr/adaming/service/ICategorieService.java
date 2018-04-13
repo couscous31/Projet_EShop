@@ -7,11 +7,11 @@ import fr.adaming.model.Categorie;
 
 public interface ICategorieService {
 	
-	public List<Categorie> getAllCategorie(Administrateur a);
+	public List<Categorie> getAllCategorie();
 	
 	public Categorie addCategorie(Categorie cat);
 	
-	public int deleteCategorie(Categorie cat, Administrateur a);
+	public int deleteCategorie(Categorie cat);
 	
 	public int updateCategorie(Categorie cat, Administrateur a);
 	

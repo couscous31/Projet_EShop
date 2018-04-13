@@ -114,7 +114,7 @@ public class CategorieManagedBean implements Serializable{
 	public void init()
 	{
 		//Pour afficher liste produit dans accueil général :
-		this.listeCategories=catService.getAllCategorie(admin);
+		this.listeCategories=catService.getAllCategorie();
 		
 		//récupération de la session ouverte:
 		this.maSession=(HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -126,15 +126,15 @@ public class CategorieManagedBean implements Serializable{
 	
 	// Méthode Ajouter une catégorie
 	public String addCategorie(){
-//		this.categorie.setPhoto(this.uf.getContents());
+		this.categorie.setPhoto(this.uf.getContents());
 		Categorie cOut=catService.addCategorie(categorie);
 		if (cOut.getId()!=0) {
 			// Récupérer la liste des catégories 
-			List<Categorie> listeCategories=catService.getAllCategorie(admin);
+			List<Categorie> listeCategories=catService.getAllCategorie();
 			// MEttre à jour la session 
 			System.out.println(listeCategories);
 			System.out.println("============ ManagedBean Categorie - AFfichage =============");
-			maSession.setAttribute("categorieListe", listeCategories);
+			maSession.setAttribute("catListe", listeCategories);
 			return "accueilAdmin";
 		} else {
 			return "ajoutCat";
@@ -143,10 +143,12 @@ public class CategorieManagedBean implements Serializable{
 
 	//Méthode Supprimer une catégorie 
 	public String deleteCategorie(){
-		int verif=catService.deleteCategorie(categorie, admin);
+		System.out.println("============== Je suis dans la méthode DELETE du MB CAtegorie");
+		int verif=catService.deleteCategorie(categorie);
+		System.out.println("============== Je suis à l'interieur méthode DELETE du MB CAtegorie");
 		if (verif!=0){
-			listeCategories=catService.getAllCategorie(admin);
-			maSession.setAttribute("categorieListe", listeCategories);
+			listeCategories=catService.getAllCategorie();
+			maSession.setAttribute("catListe", listeCategories);
 			return "accueilAdmin";
 		} else {
 			return "deleteCat";
@@ -157,12 +159,13 @@ public class CategorieManagedBean implements Serializable{
 	
 	// Méthode modifier une catégorie
 	public String updateCategorie(){
+		this.categorie.setPhoto(this.uf.getContents());
 		int verif=catService.updateCategorie(categorie, admin);
 		if (verif!=0){
 			// Récupération de la liste
-			listeCategories=catService.getAllCategorie(admin);
+			listeCategories=catService.getAllCategorie();
 			// Mettre à jour la session
-			maSession.setAttribute("categoriesListe", listeCategories);
+			maSession.setAttribute("catListe", listeCategories);
 			return "accueilAdmin";
 		} else {
 			return "updateCat";

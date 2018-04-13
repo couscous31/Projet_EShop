@@ -7,7 +7,7 @@ import fr.adaming.model.Categorie;
 
 public interface ICategorieDao {
 	
-	public List<Categorie> getAllCategorie(Administrateur a);
+	public List<Categorie> getAllCategorie();
 	
 	public Categorie addCategorie(Categorie cat);
 	
